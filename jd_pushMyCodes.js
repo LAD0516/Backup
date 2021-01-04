@@ -43,6 +43,11 @@ https://code.chiang.fun/api/v1/jd/jdzz/create/助力码/
 查看上车人数 (由@C_Hiang提供)
 https://code.chiang.fun/api/v1/jd/jdzz/count
 
+疯狂的joy随机互助 互助码提交api  
+https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/助力码/
+查看上车人数 
+https://code.chiang.fun/api/v1/jd/jdcrazyjoy/count
+
 --------------------------------*/
 const $ = new Env('上传互助码');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -61,7 +66,9 @@ const codeArr = [
   { type: 'jxfactory', code: 'aByTSdNHBLuf06a645erLg==', api: codeApi },
   { type: 'jxfactory', code: 'KTSdls8lA2sDl8_62GzlVg==', api: codeApi },
   { type: 'jdzz', code: 'ASnANw_HNm2pKXSatnw', api: codeApi2 },
-  { type: 'jdzz', code: 'AUWE5m__EzWEKCWSu334Zkg', api: codeApi2 }
+  { type: 'jdzz', code: 'AUWE5m__EzWEKCWSu334Zkg', api: codeApi2 },
+  { type: 'jdcrazyjoy', code: '4j3WhTDyE57QAd9rce15bA==', api: codeApi2 },
+  { type: 'jdcrazyjoy', code: 'zVExHoHsSwhi2DmjsVnB1Kt9zd5YaBeE', api: codeApi2 }
 ]
 
 
