@@ -24,11 +24,11 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
-const ACT_ID = 'dz2010100034444201', shareUuid = '28a699ac78d74aa3b31f7103597f8927'
+const ACT_ID = 'dz2010100034444201', shareUuid = '1fc4dc2e6e7345b18edbe24abb54a7d5'
 
 let inviteCodes = [
-  '28a699ac78d74aa3b31f7103597f8927',
-  '28a699ac78d74aa3b31f7103597f8927'
+  'd658e590b4bd4cccb19ee1b205506865',
+  '1fc4dc2e6e7345b18edbe24abb54a7d5'
 ]
 
 if ($.isNode()) {
