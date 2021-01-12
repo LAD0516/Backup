@@ -3,8 +3,7 @@
 每个月1号，10号，20号凌晨2点清理一次数据库，清理后需重新点击链接提交互助码。
 
 东东工厂互助码api
-http://api.turinglabs.net/api/v1/jd/ddfactory/create/P04z54XCjVWnYaS5nRNUzykgCoV1zFeT4o/
-http://api.turinglabs.net/api/v1/jd/ddfactory/create/P04z54XCjVWnYaS5m9cZ2SqiXwelyODJ-3Utwg/
+http://api.turinglabs.net/api/v1/jd/ddfactory/create/互助码/
 查看上车人数
 http://api.turinglabs.net/api/v1/jd/ddfactory/count/
 
@@ -14,29 +13,22 @@ http://api.turinglabs.net/api/v1/jd/jxfactory/create/互助码/
 http://api.turinglabs.net/api/v1/jd/jxfactory/count/
 
 种豆提交互助码api
-http://api.turinglabs.net/api/v1/jd/bean/create/l7wp3ujmrq2uxr2uhviqc6ncduwpccvpesym3pi/
-http://api.turinglabs.net/api/v1/jd/bean/create/e7lhibzb3zek3wvznwm6szetubfzjw3xouoz6dy/
+http://api.turinglabs.net/api/v1/jd/bean/create/互助码/
 查看上车人数
 http://api.turinglabs.net/api/v1/jd/bean/count/
 
 农场提交互助码api
-http://api.turinglabs.net/api/v1/jd/farm/create/49a95a4bcd104c568ba2852c50a7ca2a/
-http://api.turinglabs.net/api/v1/jd/farm/create/35e3300dd0164c0babfbf841bd1e2baa/
+http://api.turinglabs.net/api/v1/jd/farm/create/互助码/
 查看上车人数
 http://api.turinglabs.net/api/v1/jd/farm/count/
 
 萌宠提交互助码api
-http://api.turinglabs.net/api/v1/jd/pet/create/MTAxODc2NTEzNTAwMDAwMDAwMDA3NjcxNw==/
-http://api.turinglabs.net/api/v1/jd/pet/create/MTAxODcxOTI2NTAwMDAwMDAwNTkyNTk2OQ==/
+http://api.turinglabs.net/api/v1/jd/pet/create/互助码/
 查看上车人数
 http://api.turinglabs.net/api/v1/jd/pet/count/
 
 查看数据库清空时间
 http://api.turinglabs.net/api/v1/jd/cleantimeinfo/
-
-京东赚赚小程序实现随机互助
-
-【随机互助使用方法】把你自己的对应活动的互助码复制，替换链接中（互助码三个文字），然后点击链接即可，还不懂就自杀吧。每个月1号，10号，20号凌晨2点清理一次数据库，清理后需重新点击链接提交互助码。有啥问题别问我，下次回复这条信息禁言12小时。 
 
 京东赚赚小程序互助码api (由@C_Hiang提供) 
 https://code.chiang.fun/api/v1/jd/jdzz/create/助力码/
@@ -53,35 +45,40 @@ https://code.chiang.fun/api/v1/jd/jdcash/create/助力码/
 查看上车人数 
 https://code.chiang.fun/api/v1/jd/jdcash/count
 
+
+=======================
+ENV : MYCODES  使用@分隔
 --------------------------------*/
 const $ = new Env('上传互助码');
 const notify = $.isNode() ? require('./sendNotify') : '';
 
-const codeApi = 'http://api.turinglabs.net/api/v1/jd/'
-const codeApi2 = 'https://code.chiang.fun/api/v1/jd/'
-const codeArr = [
-  { type: 'ddfactory', code: 'P04z54XCjVWnYaS5nRNUzykgCoV1zFeT4o', api: codeApi },
-  { type: 'ddfactory', code: 'P04z54XCjVWnYaS5m9cZ2SqiXwelyODJ-3Utwg', api: codeApi },
-  { type: 'bean', code: 'l7wp3ujmrq2uxr2uhviqc6ncduwpccvpesym3pi', api: codeApi },
-  { type: 'bean', code: 'e7lhibzb3zek3wvznwm6szetubfzjw3xouoz6dy', api: codeApi },
-  { type: 'farm', code: '49a95a4bcd104c568ba2852c50a7ca2a', api: codeApi },
-  { type: 'farm', code: '35e3300dd0164c0babfbf841bd1e2baa', api: codeApi },
-  { type: 'pet', code: 'MTAxODc2NTEzNTAwMDAwMDAwMDA3NjcxNw==', api: codeApi },
-  { type: 'pet', code: 'MTAxODcxOTI2NTAwMDAwMDAwNTkyNTk2OQ==', api: codeApi },
-  { type: 'jxfactory', code: 'aByTSdNHBLuf06a645erLg==', api: codeApi },
-  { type: 'jxfactory', code: 'KTSdls8lA2sDl8_62GzlVg==', api: codeApi },
-  { type: 'jdzz', code: 'ASnANw_HNm2pKXSatnw', api: codeApi2 },
-  { type: 'jdzz', code: 'AUWE5m__EzWEKCWSu334Zkg', api: codeApi2 },
-  { type: 'jdcrazyjoy', code: '4j3WhTDyE57QAd9rce15bA==', api: codeApi2 },
-  { type: 'jdcrazyjoy', code: 'zVExHoHsSwhi2DmjsVnB1Kt9zd5YaBeE', api: codeApi2 },
-  { type: 'jdcash', code: 'Yl5sMLDvMKNkpCiAiQ', api: codeApi2 },
-  { type: 'jdcash', code: 'eU9YaL7mZqgk8GqDyXFA0Q', api: codeApi2 }
-]
+let codeArr = []
 
+const urlSlpit = '?xy=' // 链接识别分隔
+
+// 判断github action里面是否有secrets
+if (process.env.MYCODES) {
+  if (process.env.MYCODES.indexOf('&') > -1) {
+    console.log(`互助码使用&隔开\n`)
+    codeArr = process.env.MYCODES.split('&');
+  } else if (process.env.MYCODES.indexOf('@') > -1) {
+    console.log(`互助码使用@隔开\n`)
+    codeArr = process.env.MYCODES.split('@');
+  } else if (process.env.MYCODES.indexOf('\n') > -1) {
+    console.log(`互助码使用换行隔开\n`)
+    codeArr = process.env.MYCODES.split('\n');
+  } else {
+    codeArr = [];
+  }
+}
 
 ~(async () => {
-  for (let i of codeArr) {
-    await sendCodes(i)
+  if (codeArr.length) {
+    for (let i of codeArr) {
+      await sendCodes(i)
+    }
+  } else {
+    console.log(`互助码为空，本次不上传\n`)
   }
 })()
     .catch((e) => {
@@ -102,11 +99,13 @@ async function sendCodes(item) {
         } else {
           data = JSON.parse(data);
           let msg = data.message || data.msg
-          console.log(`【type】${item.type}\n`);
-          console.log(`【状态】${data.code}\n`);
-          console.log(`【Message】${msg}\n`);
+          let urlType = item.split(urlSlpit)
+          let taskName = urlType[1] || '未知'
+          console.log(`${taskName}\n`);
+          console.log(`${data.code}\n`);
+          console.log(`${msg}\n`);
 
-          notify.sendNotify(`【type】${item.type}\n`, `【Message】${msg}\n`);
+          notify.sendNotify(`${taskName}\n`, `${msg}\n`);
         }
       } catch (e) {
         $.logErr(e, resp);
@@ -121,7 +120,7 @@ async function sendCodes(item) {
 function taskUrl(item) {
   return {
     // http://api.turinglabs.net/api/v1/jd/pet/create/MTAxODcxOTI2NTAwMDAwMDAwNTkyNTk2OQ==/
-    url: `${item.api}${item.type}/create/${item.code}/`,
+    url: item,
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36'
       // 'Host': 'api.turinglabs.net'
