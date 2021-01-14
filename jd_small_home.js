@@ -152,6 +152,9 @@ async function helpFriends() {
   await updateInviteCode();
   if (!$.inviteCodes) await updateInviteCodeCDN();
   if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
+
+  // 修改邀请码
+  $.inviteCodes.inviteCode = ['1330756326227410945', '1330756433115054082'];
   for (let item of $.inviteCodes.inviteCode) {
     if (!item) continue
     await createAssistUser(item, $.createAssistUserID);
@@ -786,7 +789,7 @@ function login(userName) {
     })
   })
 }
-function updateInviteCode(url = 'https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateSmallHomeInviteCode.json') {
+function updateInviteCode(url = 'https://gitee.com/lxk0301/updateTeam/master/jd_updateSmallHomeInviteCode.json') {
   return new Promise(resolve => {
     $.get({url}, async (err, resp, data) => {
       try {
@@ -803,7 +806,7 @@ function updateInviteCode(url = 'https://raw.githubusercontent.com/lxk0301/updat
     })
   })
 }
-function updateInviteCodeCDN(url = 'https://raw.fastgit.org/lxk0301/updateTeam/master/jd_updateSmallHomeInviteCode.json') {
+function updateInviteCodeCDN(url = 'https://gitee.com/lxk0301/updateTeam/master/jd_updateSmallHomeInviteCode.json') {
   return new Promise(async resolve => {
     $.get({url}, async (err, resp, data) => {
       try {

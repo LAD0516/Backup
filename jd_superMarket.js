@@ -844,7 +844,7 @@ function smtg_sellMerchandise(body) {
   })
 }
 //新版东东超市
-function updatePkActivityId(url = 'https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateTeam.json') {
+function updatePkActivityId(url = 'https://gitee.com/lxk0301/updateTeam/master/jd_updateTeam.json') {
   return new Promise(resolve => {
     //https://cdn.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateTeam.json
     //https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateTeam.json
@@ -864,7 +864,7 @@ function updatePkActivityId(url = 'https://raw.githubusercontent.com/lxk0301/upd
     })
   })
 }
-function updatePkActivityIdCDN(url = 'https://raw.fastgit.org/lxk0301/updateTeam/master/jd_updateTeam.json') {
+function updatePkActivityIdCDN(url = 'https://gitee.com/lxk0301/updateTeam/master/jd_updateTeam.json') {
   return new Promise(async resolve => {
     //https://cdn.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateTeam.json
     //https://raw.githubusercontent.com/lxk0301/updateTeam/master/jd_updateTeam.json
