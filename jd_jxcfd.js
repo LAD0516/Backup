@@ -59,6 +59,11 @@ $.info = {};
       await $.wait(500);
       await treasureHunt();
 
+
+      //提交邀请码
+      await $.wait(500);
+      await submitInviteId(userName);
+
       const endInfo = await getUserInfo();
       $.result.push(
         `任务前财富值：${beginInfo.ddwMoney} 任务后财富值：${endInfo.ddwMoney}`,
@@ -408,6 +413,35 @@ function showMsg() {
       $.msg($.name, "", `\n${$.result.join("\n")}`);
     }
     resolve();
+  });
+}
+
+//提交互助码
+function submitInviteId(userName) {
+  return new Promise(resolve => {
+    if (!$.info || !$.info.strMyShareId) {
+      resolve();
+      return;
+    }
+    $.log('\n【🏖岛主】你的互助码: ' + $.info.strMyShareId);
+    $.post(
+      {
+        url: `https://api.ninesix.cc/api/jx-cfd/${$.info.strMyShareId}/${encodeURIComponent(userName)}`,
+      },
+      async (err, resp, _data) => {
+        try {
+          const { data = {}, code } = JSON.parse(_data);
+          $.log(`\n【🏖岛主】邀请码提交：${code}\n${$.showLog ? _data : ''}`);
+          if (data.value) {
+            $.result.push('【🏖岛主】邀请码提交成功！');
+          }
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve();
+        }
+      },
+    );
   });
 }
 
