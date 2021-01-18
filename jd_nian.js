@@ -46,8 +46,8 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-  `ssssss`,
-  `cdfsdfsd`
+  `cgxZdTXtIOiO6lrLCQH_7YLC2pAeWOE9e-0SNUbP3fxNmomWNlV4wyCjPtE`,
+  `cgxZbiTZeOaHvFGLXUP8rUscWqFwyk1JaZnzUWRe2MNufJyZ_w`
 ];
 !(async () => {
   await requireConfig();
@@ -468,7 +468,7 @@ function getFriendData(inviteId) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          if (data && data.data['bizCode'] === 0) {
+          if (data && data.data['bizCode'] && data.data['bizCode'] === 0) {
             $.itemId = data.data.result.homeMainInfo.guestInfo.itemId
             await collectScore('2',$.itemId,null,inviteId)
           }
