@@ -31,8 +31,8 @@ const $ = new Env('工业品爱消除');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let inviteCodes = [
-  '22',
-  '33',
+  '422164',
+  '140902',
 ]
 let exchangeName = $.isNode() ? (process.env.EXCHANGE_GYEC ? process.env.EXCHANGE_GYEC : '1888京豆') : ($.getdata('JDGYEC') ? $.getdata('JDGYEC') : '1888京豆')
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -598,7 +598,7 @@ function marketGoods() {
                   }
                 }
               } else {
-                console.log(`任务完成失败，错误信息：${JSON.stringify(data)}`)
+                // console.log(`任务完成失败，错误信息：${JSON.stringify(data)}`)
               }
             }
           }
