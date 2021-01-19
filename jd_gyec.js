@@ -113,7 +113,9 @@ async function jdGy(help = true) {
   await getActInfo()
   await getTaskList()
   await getDailyMatch()
-  if (help) await helpFriends()
+  if (help) {
+    await helpFriends()
+  }
   // await marketGoods()
 }
 
@@ -231,6 +233,14 @@ function checkLogin() {
             $.gameToken = data.token
             $.strength = data.role.items['8003']
             console.log(`当前体力：${$.strength}`)
+            $.not3Star = []
+            for(let level of data.role.allLevels){
+              if(level.maxStar!==3){
+                $.not3Star.push(level.id)
+              }
+            }
+            if($.not3Star.length)
+              console.log(`当前尚未三星的关卡为：${$.not3Star.join(',')}`)
             // SecrectUtil.InitEncryptInfo($.gameToken, $.gameId)
           }
         }
@@ -265,6 +275,14 @@ function getTaskList() {
                   console.log(`当前关卡：${$.level}`)
                   while ($.strength >= 5) {
                     await beginLevel()
+                  }
+                  if($.not3Star.length){
+                    console.log(`去完成尚未三星的关卡`)
+                    for(let level of $.not3Star){
+                      $.level = parseInt(level)
+                      await beginLevel()
+                      if($.strength<5) break
+                    }
                   }
                 } else if (task.res.sName === "逛逛店铺" || task.res.sName === "浏览会场") {
                   if (task.state.iFreshTimes < task.res.iFreshTimes)
@@ -678,7 +696,7 @@ function getDailyMatch() {
                   await beginDailyMatch()
                 }
               } else {
-                console.log(`关卡开启失败，错误信息：${JSON.stringify(data)}`)
+                console.log(`暂无每日挑战任务`)
               }
             }
           }
@@ -869,6 +887,7 @@ function TotalBean() {
     })
   })
 }
+
 
 //格式化助力码
 function shareCodesFormat() {
