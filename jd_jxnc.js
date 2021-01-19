@@ -44,7 +44,7 @@ let currentCookie = ''; // 当前用户 cookie
 let tokenNull = {'farm_jstoken': '', 'phoneid': '', 'timestamp': ''}; // 内置一份空的 token
 let tokenArr = []; // 用户 token 数组
 let currentToken = {}; // 当前用户 token
-const shareCode = '22bd6fbbabbaa770a45ab2607e7a1e8a'; // 内置助力码
+const shareCode = '21cc3587ea21ba2b3f5ff515b1393626@899c1a8c0cf81eb1099ffe46297af7ea'; // 内置助力码
 let jxncShareCodeArr = []; // 用户 助力码 数组
 let currentShareCode = []; // 当前用户 要助力的助力码
 const openUrl = `openjd://virtual?params=${encodeURIComponent('{ "category": "jump", "des": "m", "url": "https://wqsh.jd.com/sns/201912/12/jxnc/detail.html?ptag=7155.9.32&smp=b47f4790d7b2a024e75279f55f6249b9&active=jdnc_1_chelizi1205_2"}',)}`; // 打开京喜农场
