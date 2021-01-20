@@ -3,7 +3,7 @@
 活动时间:2021-1-20至2021-2-5
 暂不加入品牌会员，需要自行填写坐标，用于做逛身边好店任务
 环境变量JD_IMMORTAL_LATLON(经纬度)
-示例：D_IMMORTAL_LATLON={"lat":33.1, "lng":118.1}
+示例：D_IMMORTAL_LATLON={"lat":30.294511, "lng":120.07411} // 120.07411,30.294511
 boxjs IMMORTAL_LATLON
 活动入口: 京东app-我的-神仙书院
 活动地址：https://h5.m.jd.com//babelDiy//Zeus//4XjemYYyPScjmGyjej78M6nsjZvj//index.html?babelChannel=ttt9
@@ -49,8 +49,8 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-  `39xIs4YwE5Z7CPQQ0baz9jNWO6PSZHsNWqfOwWyqScbJBGhg4v7HbuBg63TJ4@27xIs4YwE5Z7FGzJqrMmavC_vWKtbEaJxbz0Vahw@43xIs4YwE5Z7DsWOzDSP_N6WTDnbA0wBjjof6cA9FzcbHMcZB9wE1R3ToSluCgxAzEXQ@43xIs4YwE5Z7DsWOzDSEuRWEOROpnDjMx_VvSs5ikYQ8XgcZB9whEHjDmPKQoL16TZ8w`,
-  `39xIs4YwE5Z7CPQQ0baz9jNWO6PSZHsNWqfOwWyqScbJBGhg4v7HbuBg63TJ4@27xIs4YwE5Z7FGzJqrMmavC_vWKtbEaJxbz0Vahw@43xIs4YwE5Z7DsWOzDSP_N6WTDnbA0wBjjof6cA9FzcbHMcZB9wE1R3ToSluCgxAzEXQ@43xIs4YwE5Z7DsWOzDSEuRWEOROpnDjMx_VvSs5ikYQ8XgcZB9whEHjDmPKQoL16TZ8w`
+  `39xIs4YwE5Z7CPw`,
+  `39xIs4YwE5Z7CPQQ0baz9jN8w`
 ];
 !(async () => {
   await requireConfig();
@@ -331,7 +331,7 @@ function requireConfig() {
           $.shareCodesArr.push(shareCodes[item])
         }
       })
-      $.cor = process.env.JD_IMMORTAL_LATLON?JSON.parse(process.env.JD_IMMORTAL_LATLON):{}
+      $.cor = process.env.JD_IMMORTAL_LATLON?JSON.parse(process.env.JD_IMMORTAL_LATLON):{"lat":30.294511, "lng":120.07411}
     }else{
       $.cor = $.getdata("IMMORTAL_LATLON")?JSON.parse($.getdata("IMMORTAL_LATLON")):{}
     }
