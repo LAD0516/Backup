@@ -19,16 +19,16 @@ hostname = wq.jd.com
 ^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask url script-request-header https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js
 =========================Loon=============================
 [Script]
-http-request ^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask script-path=https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js, requires-body=false, timeout=10, tag=京喜农场cookie
+http-request ^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask script-path=https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js, requires-body=false, timeout=3600, tag=京喜农场cookie
 cron "0 9,12,18 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js,tag=京喜农场
 
 =========================Surge============================
-京喜农场 = type=cron,cronexp="0 9,12,18 * * *",timeout=60,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js
+京喜农场 = type=cron,cronexp="0 9,12,18 * * *",timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js
 京喜农场cookie = type=http-request,pattern=^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask,requires-body=0,max-size=0,script-path= https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js
  
 =========================小火箭===========================
-京喜农场 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js, cronexpr="0 9,12,18 * * *", timeout=200, enable=true
-京喜农场APP种子cookie = type=http-request,script-path=https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js,pattern=^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask,max-size=131072,timeout=110,enable=true
+京喜农场 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jxnc.js, cronexpr="0 9,12,18 * * *", timeout=3600, enable=true
+京喜农场APP种子cookie = type=http-request,script-path=https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_nc.cookie.js,pattern=^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask,max-size=131072,timeout=3600,enable=true
 
 特别说明：
 脚本运行必须填写种子token，iOS用户使用代理可以直接获取；Android用户需要抓包获取种子token，手动做京喜农场任意任务即可获取种子token，推荐使用elecV2P（使用设置类似iOS用户的代理软件）或者HttpCanary，搜索关键字"farm_jstoken"，token按照{"farm_jstoken":"xxx","timestamp":"xxx","phoneid":"xxx-xxx"}格式填写即可
@@ -57,10 +57,8 @@ $.allTask = []; // 任务列表
 $.info = {}; // 用户信息
 $.answer = 3;
 $.drip = 0;
-$.maxHelpNum = $.isNode() ? 8 : 3; // 助力 ret 1011 错误最大计数
-$.helpNum = 0; // 当前账号 助力 ret 1011 次数
-$.maxHelpSelfNum = 3; // 助力 自身 ret 1021 cannot help self 最大次数限制（防止随机API不停返回自身 code 导致死循环）
-$.helpSelfNum = 0; // 当前账号 助力 ret 1021 cannot help self 次数
+$.maxHelpNum = $.isNode() ? 8 : 4; // 随机助力最大执行次数
+$.helpNum = 0; // 当前账号 随机助力次数
 let assistUserShareCode = 0; // 随机助力用户 share code
 
 !(async () => {
@@ -92,7 +90,6 @@ let assistUserShareCode = 0; // 随机助力用户 share code
             option = {};
             $.answer = 3;
             $.helpNum = 0;
-            $.helpSelfNum = 0;
             notifyBool = notifyLevel > 0; // 初始化是否推送
             await tokenFormat(); // 处理当前账号 token
             await shareCodesFormat(); // 处理当前账号 助力码
@@ -137,7 +134,7 @@ function requireConfig() {
                 tokenArr.push(jdTokenNode[item] ? JSON.parse(jdTokenNode[item]) : tokenNull)
             })
         } else {
-            tokenArr.push(...[$.getdata('jxnc_token1') || tokenNull, $.getdata('jxnc_token2') || tokenNull]);
+            tokenArr.push(...[JSON.parse($.getdata('jxnc_token1')) || tokenNull, JSON.parse($.getdata('jxnc_token2')) || tokenNull])
         }
 
         if ($.isNode()) {
@@ -247,7 +244,8 @@ async function jdJXNC() {
             await $.wait(500);
             let next = await helpFriends();
             if (next) {
-                while (true) {
+                while ($.helpNum < $.maxHelpNum) {
+                    $.helpNum++;
                     assistUserShareCode = await getAssistUser();
                     if (assistUserShareCode) {
                         await $.wait(300);
@@ -496,20 +494,11 @@ function helpShareCode(code) {
                     const res = data.match(/try\{whyour\(([\s\S]*)\)\;\}catch\(e\)\{\}/)[1];
                     const {ret, retmsg = ''} = JSON.parse(res);
                     $.log(`助力结果：ret=${ret} retmsg="${retmsg ? retmsg : 'OK'}"`);
-                    if (ret === 0) { // 0 助力成功
+                    // ret=0 助力成功
+                    // ret=1021 cannot help self 不能助力自己
+                    // ret=1011 active 不同
+                    if (ret === 0 || ret === 1021 || ret === 1011) { // 0 助力成功
                         resolve(true);
-                    }
-                    if (ret === 1021) { // 1021 cannot help self 不能助力自己
-                        $.helpSelfNum++;
-                        if ($.helpSelfNum <= $.maxHelpSelfNum) {
-                            resolve(true);
-                        }
-                    }
-                    if (ret === 1011) { // 1011 active 不同
-                        $.helpNum++;
-                        if ($.helpNum <= $.maxHelpNum) {
-                            resolve(true);
-                        }
                     }
                     // ret 1016 助力上限
                 } catch (e) {
