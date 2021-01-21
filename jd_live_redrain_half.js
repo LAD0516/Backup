@@ -61,7 +61,7 @@ let ids = {}
       console.log(`下一场红包雨开始时间：${new Date(data.startTime)}`)
       console.log(`下一场红包雨结束时间：${new Date(data.endTime)}`)
     }else{
-      await $.wait(1000);
+      // await $.wait(1000);
       await getRedRain();
     }
   }
@@ -91,7 +91,7 @@ let ids = {}
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      //await TotalBean();
+      await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
@@ -185,6 +185,7 @@ function receiveRedRain() {
     })
   })
 }
+
 
 function taskPostUrl(function_id, body = body) {
   return {
