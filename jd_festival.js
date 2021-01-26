@@ -30,7 +30,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '', message;
 
 const inviteCodes = [
-  `9090`,
+  `44a80c08-8149-4144-bf3e-0fb1eaab8858`,
   `3385f5c4-1186-47e8-865f-8aae4455c246`
 ];
 
