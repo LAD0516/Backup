@@ -31,7 +31,7 @@ let cookiesArr = [], cookie = '', message;
 
 const inviteCodes = [
   `9090`,
-  `dfgdfg`
+  `3385f5c4-1186-47e8-865f-8aae4455c246`
 ];
 
 if ($.isNode()) {

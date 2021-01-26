@@ -49,11 +49,10 @@ const inviteCodes = [
   `cgxZdTXtIOiO6lrLCQH_7YLC2pAeWOE9e-0SNUbP3fxNmomWNlV4wyCjPtE`,
   `cgxZbiTZeOaHvFGLXUP8rUscWqFwyk1JaZnzUWRe2MNufJyZ_w`
 ];
-/* const pkInviteCodes = [
-  'IgNWdiLGaPadvlqJQnnKp27-YpAvKvSYNTSkTGvZylf_0wcvqD9EMkohEdw@IgNWdiLGaPaZskfACQyhgLSpZWps-WtQEW3McifW',
-  'IgNWdiLGaPadvlqJQnnKp27-YpAvKvSYNTSkTGvZylf_0wcvqD9EMkohEdw@IgNWdiLGaPaAvmHPAQf769XqjJjMyRirPzN9-AS-WHY9Y_G7t9Cwe5gdiI2qEvHa'
-] */
-let pkInviteCodes = []
+const pkInviteCodes = [
+  'IgNWdiLGaPaAvmHNWlGpu1GifnVGEAcarL-f97-f02KVujfFl0VL43wOsEbcIR7l',
+  'IgNWdiLGaPabr1WVVFj_sA_6_vsTbUV9t6U1TfLb2YWDpNVCJScYfT4R'
+]
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
