@@ -23,6 +23,7 @@ cron "30 9 * * *" script-path=https://raw.githubusercontent.com/shylocks/Loon/ma
 const $ = new Env('京东手机年终奖');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
+const randomCount = $.isNode() ? 20 : 5;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
@@ -670,7 +671,7 @@ function shareCodesFormat() {
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
-    const readShareCodeRes = await readShareCode();
+    const readShareCodeRes = null // await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
     }
