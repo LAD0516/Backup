@@ -49,10 +49,11 @@ const inviteCodes = [
   `cgxZdTXtIOiO6lrLCQH_7YLC2pAeWOE9e-0SNUbP3fxNmomWNlV4wyCjPtE`,
   `cgxZbiTZeOaHvFGLXUP8rUscWqFwyk1JaZnzUWRe2MNufJyZ_w`
 ];
-const pkInviteCodes = [
+/* const pkInviteCodes = [
   'IgNWdiLGaPadvlqJQnnKp27-YpAvKvSYNTSkTGvZylf_0wcvqD9EMkohEdw@IgNWdiLGaPaZskfACQyhgLSpZWps-WtQEW3McifW',
   'IgNWdiLGaPadvlqJQnnKp27-YpAvKvSYNTSkTGvZylf_0wcvqD9EMkohEdw@IgNWdiLGaPaAvmHPAQf769XqjJjMyRirPzN9-AS-WHY9Y_G7t9Cwe5gdiI2qEvHa'
-]
+] */
+let pkInviteCodes = []
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -157,6 +158,7 @@ function showMsg() {
 }
 
 async function helpFriends() {
+  $.newShareCodes = []
   for (let code of $.newShareCodes) {
     if (!code) continue
     await getFriendData(code)
@@ -165,6 +167,7 @@ async function helpFriends() {
 }
 
 async function helpFriendsPK() {
+  $.newShareCodesPk = []
   for (let code of $.newShareCodesPk) {
     if (!code) continue
     console.log(`去助力PK好友${code}`)
