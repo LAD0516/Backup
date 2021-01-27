@@ -270,7 +270,7 @@ function answer(body = {}) {
 function bing(str) {
   return new Promise(resolve => {
     $.get({
-      url: `https://www.bing.com/search?q=${str}`,
+      url: `https://cn.bing.com/search?q=${str}`,
       headers: {
         'Connection': 'Keep-Alive',
         'Accept': 'text/html, application/xhtml+xml, */*',
