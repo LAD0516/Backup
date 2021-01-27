@@ -23,11 +23,11 @@ cron "30 9 * * *" script-path=https://raw.githubusercontent.com/shylocks/Loon/ma
 const $ = new Env('京东手机年终奖');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
-const randomCount = $.isNode() ? 20 : 5;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
+const randomCount = $.isNode() ? 20 : 5;
 
 const inviteCodes = [
   `44a80c08-8149-4144-bf3e-0fb1eaab8858`,
@@ -105,6 +105,7 @@ async function helpFriends() {
     if (!code) continue
     console.log(`去助力好友${code}`)
     const helpRes = await doSupport(code);
+    await $.wait(1000)
   }
 }
 
@@ -486,7 +487,6 @@ function getTs() {
 function taskPostUrl(function_id, body = {}) {
   const t = getTs()
   let n = {
-    t: t,
     ...body
   }
   let str = ''
@@ -511,8 +511,9 @@ function taskPostUrl(function_id, body = {}) {
       'dnt': '1',
       'pragma': 'no-cache',
       'sign': sign(n, `d55b480bed0545839dbd8b78b6cffdb1${t}`, `/sf/${function_id}`),
-      'timestamp': t,
-      "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+      'timestamp': ($.isQuanX()||$.isSurge()) ?t.toString():t,
+      "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.141"
+    )
     }
   }
 }
@@ -544,8 +545,8 @@ function taskUrl(function_id, body = {}) {
       'dnt': '1',
       'pragma': 'no-cache',
       'sign': sign(n, `d55b480bed0545839dbd8b78b6cffdb1${t}`, `/sf/${function_id}`),
-      'timestamp': t,
-      "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+      'timestamp': ($.isQuanX()||$.isSurge()) ?t.toString():t,
+      "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.141"
     }
   }
 }
