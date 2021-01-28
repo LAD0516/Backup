@@ -952,7 +952,7 @@ function initial() {
 async function msgShow() {
   console.log("\n\n京东账号："+merge.nickname + ' 任务已做完！\n如有未完成的任务，请多执行几次')
   if($.isNode()) {
-    await notify.sendNotify(`${merge.nickname}的PK码为：${pkCode}\n`);
+    await notify.sendNotify(`${merge.nickname}的PK码为：\n ${pkCode} \n`);
   }
  //$.msg($.Name,"","京东账号："+merge.nickname + ' 任务已做完！\n如有未完成的任务，请多执行几次')
 }
