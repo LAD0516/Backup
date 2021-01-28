@@ -14,10 +14,11 @@ cron "5 * * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/Quan
 全民炸年兽 = type=cron,cronexp=5 * * * *,wake-system=1,timeout=500,script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_nianBeast.js
 */
 const $ = new Env('全民炸年兽');
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
-let cookiesArr = [], cookie = '',secretp = '',shareCodeList = [];
+let cookiesArr = [], cookie = '',secretp = '',shareCodeList = [],pkCode='';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -802,6 +803,7 @@ function nian_pk_getHomeData(body = "",timeout = 0) {
           data = JSON.parse(data);
           //if (data.data.result.groupInfo.groupAssistInviteId.match(/XUkkFpUhDG0OdMYzp22uY_lyEaiFin/)){
           console.log('您的商圈助力码：' + data.data.result.groupInfo.groupAssistInviteId)
+          pkCode = `/submit_temp_code nian ${data.data.result.groupInfo.groupAssistInviteId}` || ''
           //await $.getScript("https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/memo/jd_nianShareCode.txt").then((text) => (shareCode = text.replace('\n','')))
           //shareCode = "IgNWdiLGaPaAvmHOCAeu7X_L_ohVw_eWssS2lMLtcUX0Ce0rrcGpuo2GiazAmQeS"
           //await nian_pk_assistGroup(shareCode);
@@ -947,8 +949,11 @@ function initial() {
   }
 }
 //通知
-function msgShow() {
+async function msgShow() {
   console.log("\n\n京东账号："+merge.nickname + ' 任务已做完！\n如有未完成的任务，请多执行几次')
+  if($.isNode()) {
+    await notify.sendNotify(`${merge.nickname}的PK码为：${pkCode}\n`);
+  }
  //$.msg($.Name,"","京东账号："+merge.nickname + ' 任务已做完！\n如有未完成的任务，请多执行几次')
 }
 
