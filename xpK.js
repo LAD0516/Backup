@@ -11,7 +11,7 @@ boxjs：https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/ZhiYi-N.
 作者：执意ZhiYi-N
 目前只有看视频，群友推荐，欢迎推荐
 脚本初成，非专业人士制作，欢迎指正
-#看一个视频弹出金币获取videoheader and videobody(存在一定几率获取不到videobody）多试几次
+#看一个视频弹出金币获取videoheader and videobody(存在一定几率获取不到videobody）多试几次 and 金蛋获取 gold body(第六个视频，最后一圈）
 [mitm]
 hostname = veishop.iboxpay.com
 #圈x
@@ -26,9 +26,40 @@ const jsname='笑谱'
 const $ = Env(jsname)
 const notify = $.isNode() ?require('./sendNotify') : '';
 $.idx = ($.idx = ($.getval("xpsetting") || "1") - 1) > 0 ? `${$.idx + 1}` : ""; // 账号扩展字符
-const videoheaderArr = [],videobodyArr=[]
+// const videoheaderArr = [],videobodyArr=[],goldbodyArr=[]
+
+
+// ========================================
+
+let actId = '302'
+
+
+let token = 'fb2e409422094e329e52c94bacc5780c'
+
+
+let traceid = '313485191856794419201611706464748a4b82bfa26fc'
+
+
+let videoIdListArr =  [1346881096019697664,1349053876890779648,15936370033681061,1350867046617862144,1328142146665234432,15841517247709548]
+
+
+// =======================================
+let videoListArr = videoIdListArr.map(val => {
+  return {
+    "videoId" : val + '',
+    "type" : 1,
+    "isFinishWatch" : false
+  }
+})
+
+let videoListArrStr = JSON.stringify(videoListArr).replace(/^(\s|")+|(\s|")+$/g, '')
+let videoheaderArr = [`{"Host":"veishop.iboxpay.com","X-User-Agent":"VeiShop, 1.4.4 (iOS, 14.3, en_CN, Apple, iPhone, B41708B8-BD50-419D-B49C-A282BA6D24A1)","version":"1.4.4","shopkeeperId":"1148855820752977920","Accept":"*/*","source":"VEISHOP_APP_IOS","Accept-Language":"en-GB;q=1, zh-Hans-CN;q=0.9, en-CN;q=0.8, en;q=0.7","Accept-Encoding":"gzip, deflate, br","token":"${token}","Content-Type":"application/json; charset=utf-8","Content-Length":"233","User-Agent":"VeiShop, 1.4.4 (iOS, 14.3, en_CN, Apple, iPhone, B41708B8-BD50-419D-B49C-A282BA6D24A1)","traceid":"${traceid}","Connection":"keep-alive","mchtNo":"100529600058887"}`];
+let videobodyArr=[`{"type":1,"videoList":${videoListArrStr},"actId":"${actId}"}`];
+let goldbodyArr=[`{"type":2,"videoList":${videoListArrStr},"actId":"${actId}"}`];
+
 let videoheader = $.getdata('videoheader')
 let videobody = $.getdata('videobody')
+let goldbody = $.getdata('goldbody')
 
 let tz = ($.getval('tz') || '1');//0关闭通知，1默认开启
 //const invite=1;//新用户自动邀请，0关闭，1默认开启
@@ -38,14 +69,13 @@ var minute=''
 var currentdate = ''
 var newtime = ''
 let headers;
-var gold = "0"
 var live = "0"
+let gold;
 let no,cash;
 var draw = '1';
 var video= '0'
 var coins='0'
 let stop;
-let goldbody;
 const liveid = '1348602411185672599'
 if ($.isNode()) {
    hour = new Date( new Date().getTime() + 8 * 60 * 60 * 1000 ).getHours();
@@ -73,7 +103,7 @@ if ($.isNode()) {
    videoheader = process.env.VIDEOHEADER.split('\n');
    console.log(`您选择的是用换行隔开\n`)
   } else {
-   videoheader = process.env.VIDEOHEADER.split()
+   videoheader = [process.env.VIDEOHEADER]
   };
   if (process.env. VIDEOBODY && process.env.VIDEOBODY.indexOf('#') > -1) {
    videobody = process.env.VIDEOBODY.split('#');
@@ -81,7 +111,15 @@ if ($.isNode()) {
   else if (process.env.VIDEOBODY && process.env.VIDEOBODY.split('\n').length > 0) {
    videobody = process.env.VIDEOBODY.split('\n');
   } else  {
-   videobody = process.env.VIDEOBODY.split()
+   videobody = [process.env.VIDEOBODY]
+  };
+  if (process.env.GOLDBODY && process.env.GOLDBODY.indexOf('#') > -1) {
+   goldbody = process.env.GOLDBODY.split('#');
+  }
+  else if (process.env.GOLDBODY && process.env.GOLDBODY.split('\n').length > 0) {
+   goldbody = process.env.GOLDBODY.split('\n');
+  } else  {
+   goldbody = [process.env.GOLDBODY]
   };
 //video
   Object.keys(videoheader).forEach((item) => {
@@ -94,16 +132,23 @@ if ($.isNode()) {
           videobodyArr.push(videobody[item])
         }
     });
+    Object.keys(goldbody).forEach((item) => {
+        if (goldbody[item]) {
+          goldbodyArr.push(goldbody[item])
+        }
+    });
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  } else {
     videoheaderArr.push($.getdata('videoheader'))
     videobodyArr.push($.getdata('videobody'))
+    goldbodyArr.push($.getdata('goldbody'))
     let xpcount = ($.getval('xpcount') || '1');
     cash = ($.getval('xpcash') || '0');
   for (let i = 2; i <= xpcount; i++) {
     videoheaderArr.push($.getdata(`videoheader${i}`))
     videobodyArr.push($.getdata(`videobody${i}`))
+    goldbodyArr.push($.getdata(`goldbody${i}`))
   }
 }
 !(async () => {
@@ -111,12 +156,18 @@ if (!videoheaderArr[0]) {
     $.msg($.name, '【提示】请先获取笑谱一cookie')
     return;
   }
-   console.log(`------------- 共${videoheaderArr.length}个账号----------------\n`)
+
+  //循环
+ if ($.isNode()) {
+  while(true){
+  console.log(`------------- 共${videoheaderArr.length}个账号----------------\n`)
   for (let i = 0; i < videoheaderArr.length; i++) {
     if (videoheaderArr[i]) {
       message = ''
+      gold = 0
       videoheader = videoheaderArr[i];
       videobody = videobodyArr[i];
+      goldbody = goldbodyArr[i];
       $.index = i + 1;
       console.log(`\n开始【笑谱${$.index}】`)
       //await invite()
@@ -125,13 +176,45 @@ if (!videoheaderArr[0]) {
       await balance()
       await status()
       await day_cash()
-      await control()
+      //await control()
       //await withdraw()
-      //await watch_livevideo()
+      await watch_livevideo()
       await showmsg()
   }
  }
+
+console.log(`========================本次任务执行完毕，休息1分钟==============================\n`);
+      await $.wait(30000)
+
+    }
+  }else{
+   console.log(`------------- 共${videoheaderArr.length}个账号----------------\n`)
+  for (let i = 0; i < videoheaderArr.length; i++) {
+    if (videoheaderArr[i]) {
+      message = ''
+      gold = 0
+      signheader = videoheaderArr[i];
+      videobody = videobodyArr[i];
+      $.index = i + 1;
+      console.log(`\n开始【笑谱${$.index}】`)
+     //await invite()
+      await getNowFormatDate()
+      await profit()
+      await balance()
+      await status()
+      //await control()
+      //await withdraw()
+      await watch_livevideo()
+      await showmsg()
+  }
+ }
+
+  }
+ //==============自定义循环==========================
+
+
 })()
+
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
 function GetCookie() {
@@ -147,17 +230,23 @@ if($request.body.indexOf('isFinishWatch')&& $request.body.indexOf('"type":2')<=0
     $.log(`[${jsname}] 获取video请求: 成功,videobody: ${videobody}`)
     $.msg(`videobody${$.idx}: 成功🎉`, ``)
  }
+if($request.body.indexOf('isFinishWatch')&&$request.body.indexOf('"type":2')>=0) {
+   const goldbody = $request.body
+    if(goldbody)  $.setdata(goldbody,`goldbody${$.idx}`)
+    $.log(`[${jsname}] 获取goldvideo请求: 成功,goldbody: ${goldbody}`)
+    $.msg(`goldbody${$.idx}: 成功🎉`, ``)
+ }
  }
 async function control(){
    if(cash>0 && coins >= cash && hour == 0 && draw == 1){
       await withdraw();
 }
-   if(goldbody && gold == 1){
+   if(gold == 1){
       await watch_goldvideo();
    }else{
       await watch_video();
 }
-   if(no < 60 && hour >= 8 && hour < 23 && $.getval("live") == 1){
+   if(no < 60 && hour >= 8 && hour < 23){
        await watch_livevideo();
 }
 }
@@ -212,8 +301,9 @@ function watch_video() {
 return new Promise((resolve, reject) => {
   let watch_videourl ={
     url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
-    headers: JSON.parse(headers),
-    body: videobody.replace(/\d{19}/g,`${video}`)
+    headers: JSON.parse(headers.replace(/\d{19}/g,`${video}`)),
+    body: videobody,
+    timeout: 30000
 }
    $.post(watch_videourl,(error, response, data) =>{
      const result = JSON.parse(data)
@@ -234,16 +324,14 @@ return new Promise((resolve, reject) => {
   } 
 //goldvideo
 function watch_goldvideo() {
-goldbody = videobody.replace('type":1','type":2')
 return new Promise((resolve, reject) => {
   let watch_goldvideourl ={
     url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
-    headers: JSON.parse(headers),
-    body: goldbody.replace(/\d{19}/g,`${video}`)
+    headers: JSON.parse(headers.replace(/\d{19}/g,`${video}`)),
+    body: goldbody,
+    timeout: 60000
 }
    $.post(watch_goldvideourl,(error, response, data) =>{
-//$.log(headers)
-//$.log(videobody)
      const result = JSON.parse(data)
        if(logs) $.log(data)
           message += '📣看金蛋视频\n'
@@ -295,8 +383,9 @@ return new Promise((resolve, reject) => {
       if(result.resultCode == 1) {
           message += '获得'+result.data.goldCoinAmt+'\n'
       }else{
-          message +='⚠️异常'+result.errorDesc+'\n'
           live = 0;
+          $.msg('⚠️异常'+result.errorDesc+'\n')
+          $.done()
            }
           resolve()
     })
