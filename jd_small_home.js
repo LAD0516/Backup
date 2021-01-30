@@ -149,14 +149,13 @@ async function doChannelsListTask(taskId, taskType) {
 }
 async function helpFriends() {
   await updateInviteCode();
-  if (!$.inviteCodes) await updateInviteCodeCDN();
-  if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
-
-  // 修改邀请码
-  $.inviteCodes.inviteCode = ['1330756326227410945', '1330756433115054082'];
-  for (let item of $.inviteCodes.inviteCode) {
-    if (!item) continue
-    await createAssistUser(item, $.createAssistUserID);
+  // if (!$.inviteCodes) await updateInviteCodeCDN();
+  await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
+  if ($.inviteCodes && $.inviteCodes['inviteCode']) {
+    for (let item of $.inviteCodes.inviteCode) {
+      if (!item) continue
+      await createAssistUser(item, $.createAssistUserID);
+    }
   }
 }
 async function doAllTask() {
