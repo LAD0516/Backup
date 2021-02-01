@@ -14,7 +14,7 @@ cron "5 * * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/Quan
 全民炸年兽 = type=cron,cronexp=5 * * * *,wake-system=1,timeout=500,script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_nianBeast.js
 */
 const $ = new Env('全民炸年兽');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotifyNoReg') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
