@@ -54,6 +54,10 @@ const JD_API_HOST = `https://api.m.jd.com/client.action?functionId=`;
       await msgShow();
     }
   }
+
+  if($.isNode()) {
+    await notify.sendNotify('/submit_temp_code nian ' + pkCode);
+  }
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done())
@@ -803,7 +807,7 @@ function nian_pk_getHomeData(body = "",timeout = 0) {
           data = JSON.parse(data);
           //if (data.data.result.groupInfo.groupAssistInviteId.match(/XUkkFpUhDG0OdMYzp22uY_lyEaiFin/)){
           console.log('您的商圈助力码：' + data.data.result.groupInfo.groupAssistInviteId)
-          pkCode = '/submit_temp_code nian ' + data.data.result.groupInfo.groupAssistInviteId || ''
+          pkCode += data.data.result.groupInfo.groupAssistInviteId + '&'
           //await $.getScript("https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/memo/jd_nianShareCode.txt").then((text) => (shareCode = text.replace('\n','')))
           //shareCode = "IgNWdiLGaPaAvmHOCAeu7X_L_ohVw_eWssS2lMLtcUX0Ce0rrcGpuo2GiazAmQeS"
           //await nian_pk_assistGroup(shareCode);
@@ -951,9 +955,6 @@ function initial() {
 //通知
 async function msgShow() {
   console.log("\n\n京东账号："+merge.nickname + ' 任务已做完！\n如有未完成的任务，请多执行几次')
-  if($.isNode()) {
-    await notify.sendNotify(merge.nickname + '的PK码为：\n' + pkCode);
-  }
  //$.msg($.Name,"","京东账号："+merge.nickname + ' 任务已做完！\n如有未完成的任务，请多执行几次')
 }
 
