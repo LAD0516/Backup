@@ -50,8 +50,8 @@ const inviteCodes = [
   `cgxZbiTZeOaHvFGLXUP8rUscWqFwyk1JaZnzUWRe2MNufJyZ_w`
 ];
 const pkInviteCodes = [
-  'IgNWdiLGaPaAvmHNWlGpu1GifnVGEAcarL-f97-f02KVujfFl0VL43wOsEbcIR_h',
-  'IgNWdiLGaPabr1WVVFj_sA_6_vsTbUV9t6U1TfLb2YWDpNVCJScYfT8V'
+  'IgNWdiLGaPaAvmHNWlGpu1GifnVGEAcarL-f97-f02KVujfFl0VL43wOsEbcIR_g',
+  'IgNWdiLGaPabr1WVVFj_sA_6_vsTbUV9t6U1TfLb2YWDpNVCJScYfT8U'
 ]
 !(async () => {
   await requireConfig();
@@ -82,7 +82,7 @@ const pkInviteCodes = [
       await jdNian()
     }
   }
-
+  if(superAssist.length)
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
