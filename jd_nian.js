@@ -53,6 +53,8 @@ const pkInviteCodes = [
   'IgNWdiLGaPaAvmHNWlGpu1GifnVGEAcarL-f97-f02KVujfFl0VL43wOsEbcIR_n',
   'IgNWdiLGaPabr1WVVFj_sA_6_vsTbUV9t6U1TfLb2YWDpNVCJScYfT8T'
 ]
+let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);
+const openUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wbbny.m.jd.com/babelDiy/Zeus/2cKMj86srRdhgWcKonfExzK4ZMBy/index.html%22%20%7D`;
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -103,6 +105,16 @@ const pkInviteCodes = [
       }
       await helpSuper()
     }
+  }
+  if ((nowTimes.getHours() < 20 && nowTimes.getHours() >= 10) && nowTimes.getDate() === 4) {
+    if (nowTimes.getHours() === 10 || nowTimes.getHours() === 19) {
+      $.msg($.name, '', '队伍红包已可兑换\n点击弹窗直达兑换页面', { 'open-url' : openUrl});
+      if ($.isNode()) await notify.sendNotify($.name, `队伍红包已可兑换\n兑换地址: https://wbbny.m.jd.com/babelDiy/Zeus/2cKMj86srRdhgWcKonfExzK4ZMBy/index.html`)
+    }
+  }
+  if (nowTimes.getHours() === 20 && nowTimes.getDate() === 4) {
+    $.msg($.name, '', '年终奖红包已可兑换\n点击弹窗直达兑换页面', { 'open-url' : openUrl})
+    if ($.isNode()) await notify.sendNotify($.name, `年终奖红包已可兑换\n兑换地址: https://wbbny.m.jd.com/babelDiy/Zeus/2cKMj86srRdhgWcKonfExzK4ZMBy/index.html`)
   }
 })()
   .catch((e) => {
