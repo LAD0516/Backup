@@ -166,6 +166,8 @@ function isJDCoupon(title) {
   title.indexOf('还款') > -1 || 
   title.indexOf('省钱') > -1 || 
   title.indexOf('支付') > -1 || 
+  title.indexOf('话费') > -1 || 
+  title.indexOf('小鸽子有礼') > -1 || 
   title.indexOf('仅可') > -1)
     return true
   else
