@@ -27,7 +27,7 @@ const $ = new Env('沃尔玛粉丝互动');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', originCookie = '', message = '';
-let helpAuthor = true;//为作者助力的开关
+let helpAuthor = false;//为作者助力的开关
 const ACT_ID = '8194c0e37a5543da94be8fe5c4caee74';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
