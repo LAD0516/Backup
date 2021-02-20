@@ -123,6 +123,8 @@ if (!rlheaderArr[0] && !rlurlArr[0]) {
       message = ''
       note =''
       rlurl = rlurlArr[i];
+      console.log(rlurlArr, '\n')
+      console.log(rlurl, '\n')
       rlheader = rlheaderArr[i];
       // rlbody = rlbodyArr[i];
       $.index = i + 1;
