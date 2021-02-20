@@ -62,7 +62,7 @@ if ($.isNode()) {
    rlurl = process.env.RLURL.split('\n');
    console.log(`您选择的是用换行隔开\n`)
   } else {
-   rlurl = [process.env.RLURL]
+   rlurl = process.env.RLURL.split()
   };
   if (process.env.RLHEADER && process.env.RLHEADER.indexOf('#') > -1) {
    rlheader = process.env.RLHEADER.split('#');
@@ -72,7 +72,7 @@ if ($.isNode()) {
    rlheader = process.env.RLHEADER.split('\n');
    console.log(`您选择的是用换行隔开\n`)
   } else {
-   rlheader = [process.env.RLHEADER]
+   rlheader = process.env.RLHEADER.split()
   };
   if (process.env.RLBODY && process.env.RLBODY.indexOf('#') > -1) {
    rlbody = process.env.RLBODY.split('#');
@@ -82,23 +82,8 @@ if ($.isNode()) {
    rlbody = process.env.RLBODY.split('\n');
    console.log(`您选择的是用换行隔开\n`)
   } else {
-   rlbody = [process.env.RLBODY]
+   rlbody = process.env.RLBODY.split()
   };
-  Object.keys(rlurl).forEach((item) => {
-    if (rlurl[item]) {
-      rlurlArr.push(rlurl[item])
-    }
-});
-Object.keys(rlheader).forEach((item) => {
-  if (rlheader[item]) {
-    rlheaderArr.push(rlheader[item])
-  }
-});
-Object.keys(rlbody).forEach((item) => {
-  if (rlbody[item]) {
-    rlbodyArr.push(rlbody[item])
-  }
-});
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  } else {
@@ -113,7 +98,7 @@ Object.keys(rlbody).forEach((item) => {
   }
 }
 !(async () => {
-if (!rlheaderArr[0] && !rlurlArr[0]) {
+if (!rlheaderArr[0] && !rlbodyArr[0] && !rlurlArr[0]) {
     $.msg($.name, '【提示】请先获取燃旅视频一cookie')
     return;
   }
@@ -123,10 +108,8 @@ if (!rlheaderArr[0] && !rlurlArr[0]) {
       message = ''
       note =''
       rlurl = rlurlArr[i];
-      console.log(rlurlArr, '\n')
-      console.log(rlurl, '\n')
       rlheader = rlheaderArr[i];
-      // rlbody = rlbodyArr[i];
+      rlbody = rlbodyArr[i];
       $.index = i + 1;
       console.log(`\n开始【燃旅视频${$.index}】`)
       await checkVersion()
