@@ -1,5 +1,5 @@
 /*
- * @Author: lxk0301 https://github.com/lxk0301
+ * @Author: lxk0301 https://gitee.com/lxk0301
  * @Date: 2020-08-19 16:12:40 
  * @Last Modified by: lxk0301
  * @Last Modified time: 2021-2-20 17:52:54
@@ -128,7 +128,7 @@ if (process.env.PUSH_PLUS_USER) {
 
 async function sendNotify(text, desp, params = {}) {
   //提供6种通知
-  desp += `\n 🙂` //`\n本脚本开源免费使用 By：https://github.com/LXK9301/jd_scripts`;
+  desp += '' //`\n本脚本开源免费使用 By：https://gitee.com/lxk0301/jd_docker`;
   await Promise.all([
     serverNotify(text, desp),//微信server酱
     pushPlusNotify(text, desp)//pushplus(推送加)
