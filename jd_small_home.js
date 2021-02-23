@@ -108,7 +108,7 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
 async function smallHome() {
   await loginHome();
   await ssjjRooms();
-  // await helpFriends();
+  await helpFriends();
   if (!$.isUnLock) return;
   await createInviteUser();
   await queryDraw();
@@ -518,7 +518,7 @@ function createInviteUser() {
 }
 
 function createAssistUser(inviteId, taskId) {
-  console.log(`${inviteId}, ${taskId}`, `${cookie}`);
+  console.log(`${inviteId}, ${taskId}`/* , `${cookie}` */);
   return new Promise(resolve => {
     $.get(taskUrl(`/ssjj-task-record/createAssistUser/${inviteId}/${taskId}`), (err, resp, data) => {
       try {
