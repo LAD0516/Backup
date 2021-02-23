@@ -990,7 +990,7 @@ function pkAssignGroup(inviteId) {
             if (data.data && data.data.bizMsg) {
               console.log(data.data.bizMsg)
             } else {
-              console.log(`助力失败，未知错误:${JSON.stringify(data)}`)
+              // console.log(`助力失败，未知错误:${JSON.stringify(data)}`)
               $.canhelp = false
             }
           }

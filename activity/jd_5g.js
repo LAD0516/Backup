@@ -619,7 +619,7 @@ function requireConfig() {
         }
       })
     }
-    let data = await updateShareCodes("https://gitee.com/shylocks/updateTeam/raw/main/jd_818.json")
+    let data = null // await updateShareCodes("https://gitee.com/shylocks/updateTeam/raw/main/jd_818.json")
     if(data){
       inviteCodes[0] = data.join('@')
       inviteCodes[1] = data.join('@')

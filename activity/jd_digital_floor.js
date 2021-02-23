@@ -134,7 +134,7 @@ function supportCheck(shareId) {
             if (data.code === 200) {
               console.log(`检查助力，助力好友${shareId}成功`)
             }else{
-              console.log(`检查助力失败，${data.msg}`)
+              // console.log(`检查助力失败，${data.msg}`)
             }
           }
         }
