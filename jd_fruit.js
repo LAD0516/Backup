@@ -650,7 +650,7 @@ async function masterHelpShare() {
         break
       }
     } else {
-      console.log(`助力失败::${JSON.stringify($.helpResult)}`);
+      // console.log(`助力失败::${JSON.stringify($.helpResult)}`);
     }
   }
   if ($.isLoon() || $.isQuanX() || $.isSurge()) {

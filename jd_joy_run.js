@@ -202,7 +202,7 @@ async function main() {
     $.msg($.name, '【提示】请先获取来客有礼宠汪汪token', "微信搜索'来客有礼'小程序\n点击底部的'发现'Tab\n即可获取Token");
     return;
   }
-  await getFriendPins();
+  // await getFriendPins();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -263,7 +263,7 @@ async function invite(invite_pins) {
           console.log(`已给该好友 ${item} 助力过或者此friendPin是你自己\n`)
           continue;
         } else if (helpStatus=== 'invite_full') {
-          console.log(`助力失败，该好友 ${item} 已经满3人给他助力了,无需您再次助力\n`)
+          // console.log(`助力失败，该好友 ${item} 已经满3人给他助力了,无需您再次助力\n`)
           continue;
         } else if (helpStatus=== 'can_help') {
           console.log(`开始给好友 ${item} 助力\n`)

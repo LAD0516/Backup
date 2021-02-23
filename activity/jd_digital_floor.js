@@ -134,7 +134,7 @@ function supportCheck(shareId) {
             if (data.code === 200) {
               console.log(`检查助力，助力好友${shareId}成功`)
             }else{
-              console.log(`检查助力失败，${data.msg}`)
+              // console.log(`检查助力失败，${data.msg}`)
             }
           }
         }
@@ -281,7 +281,7 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await getAuthorShareCode()
+    // await getAuthorShareCode()
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
     const shareCodes = [] //$.isNode() ? require('./jdSplitShareCodes.js') : '';

@@ -314,7 +314,7 @@ function doSupport(shareId) {
             if (data.success) {
               console.log(`助力成功`)
             } else {
-              console.log(`助力失败`)
+              // console.log(`助力失败`)
             }
           }
         }
