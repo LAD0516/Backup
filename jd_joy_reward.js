@@ -60,7 +60,7 @@ const JD_API_HOST = 'https://jdjoy.jd.com';
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
-      console.log(`${cookie}\n`);
+      // console.log(`${cookie}\n`);
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       $.index = i + 1;
       $.isLogin = true;
