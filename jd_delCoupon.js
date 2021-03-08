@@ -148,21 +148,21 @@ function getCoupon() {
 }
 
 function isJDCoupon(title) {
-  if (title.indexOf('京东') > -1 || 
-  title.indexOf('京库') > -1 || 
-  title.indexOf('自营') > -1 || 
-  title.indexOf('超市') > -1 || 
-  title.indexOf('京贴') > -1 || 
-  title.indexOf('生鲜') > -1 || 
-  title.indexOf('全品') > -1 || 
-  title.indexOf('快递') > -1 || 
-  title.indexOf('运费') > -1 || 
-  title.indexOf('还款') > -1 || 
-  title.indexOf('省钱') > -1 || 
-  title.indexOf('支付') > -1 || 
-  title.indexOf('话费') > -1 || 
-  title.indexOf('小鸽子有礼') > -1 || 
-  title.indexOf('仅可') > -1)
+  if (title.indexOf('京东') > -1)
+    return true
+  else if (title.indexOf('超市') > -1)
+    return true
+  else if (title.indexOf('京贴') > -1)
+    return true
+  else if (title.indexOf('全品类') > -1)
+    return true
+  else if (title.indexOf('话费') > -1)
+    return true
+  else if (title.indexOf('小鸽有礼') > -1)
+    return true
+  else if (title.indexOf('旗舰店') > -1)
+    return false
+  else if (title.indexOf('生鲜') > -1)
     return true
   else
     return false
@@ -204,7 +204,7 @@ function TotalBean() {
               return
             }
             if (data['retcode'] === 0) {
-              $.nickName = data['base'].nickname;
+              $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
             } else {
               $.nickName = $.UserName
             }
