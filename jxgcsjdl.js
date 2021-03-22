@@ -6,6 +6,10 @@ let url = [
   `https://wq.jd.com/dreamfactory/generator/CollectCurrentElectricity?zone=dream_factory&apptoken=79266e3048564be4a39d51c87941fe00&pgtimestamp=1616407816690&phoneID=8aa85f62b48336a20352b11504ec02ebf910059b&factoryid=1099513374415&doubleflag=0&timeStamp=undefined&_time=1616407816695&_stk=_time%2Capptoken%2Cdoubleflag%2Cfactoryid%2Cpgtimestamp%2CphoneID%2Czone&_ste=1&h5st=20210322181016696%3B0252526244642161%3B10001%3Btk01wd8671cd2a8nNEZhY2l5S3hiuqJKlFi9AbspfuqcejzDdKjU0XuwIgf3Ki6W%2FrKGTszLDuZur1t3kRKPHn%2FO%2FTPM%3B9f741970352d0d064572dc53f25287b4854c61247d332c482e03e7b9f0538cfa&_=1616407816699&sceneval=2&g_login_type=1&callback=jsonpCBKKK&g_ty=ls`,
   `https://wq.jd.com/dreamfactory/generator/CollectCurrentElectricity?zone=dream_factory&apptoken=ac4fc0452587b6c06f3eef263575b327&pgtimestamp=1616408135565&phoneID=8aa85f62b48336a20352b11504ec02ebf910059b&factoryid=1099522458402&doubleflag=0&timeStamp=undefined&_time=1616408135569&_stk=_time%2Capptoken%2Cdoubleflag%2Cfactoryid%2Cpgtimestamp%2CphoneID%2Czone&_ste=1&h5st=20210322181535570%3B0252526244642161%3B10001%3Btk01wd8671cd2a8nNEZhY2l5S3hiuqJKlFi9AbspfuqcejzDdKjU0XuwIgf3Ki6W%2FrKGTszLDuZur1t3kRKPHn%2FO%2FTPM%3Ba932535067f56e3d6e454876c51647a3cda4117fd7d4aa66909437e2f0b89b16&_=1616408135571&sceneval=2&g_login_type=1&callback=jsonpCBKII&g_tk=1478931551&g_ty=ls`
 ]
+let UA = [
+  `jdpingou;iPhone;4.5.0;14.4.1;8aa85f62b48336a20352b11504ec02ebf910059b;network/wifi;model/iPhone10,2;appBuild/100475;ADID/00000000-0000-0000-0000-000000000000;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/0;hasOCPay/0;supportBestPay/0;session/138;pap/JA2019_3111789;brand/apple;supportJDSHWK/1;`,
+  `jdpingou;iPhone;4.5.0;14.4.1;8aa85f62b48336a20352b11504ec02ebf910059b;network/wifi;model/iPhone10,2;appBuild/100475;ADID/00000000-0000-0000-0000-000000000000;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/0;hasOCPay/0;supportBestPay/0;session/138;pap/JA2019_3111789;brand/apple;supportJDSHWK/1;Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`
+]
 let cookiesArr = [];
 
 if ($.isNode()) {
@@ -16,7 +20,7 @@ if ($.isNode()) {
 }
 !(async () => {
   for (let i = 0; i < cookiesArr.length; i++) {
-    await CollectCurrentElectricity(cookiesArr[i], url[i]);
+    await CollectCurrentElectricity(cookiesArr[i], url[i], UA[i]);
   }
 })()
     .catch((e) => {
@@ -25,7 +29,7 @@ if ($.isNode()) {
     .finally(() => {
       $.done();
     })
-function CollectCurrentElectricity(cookie, uri) {
+function CollectCurrentElectricity(cookie, uri, myua) {
   return new Promise((resolve) => {
     const options = {
       uri,
@@ -40,7 +44,7 @@ function CollectCurrentElectricity(cookie, uri) {
         "sec-fetch-dest": "script",
         "sec-fetch-mode": "no-cors",
         "sec-fetch-site": "same-site",
-        "user-agent": "jdapp;iPhone;9.3.0;14.2;88732f840b77821b345bf07fd71f609e6ff12f43;network/4g;ADID/0E38E9F1-4B4C-40A4-A479-DD15E58A5623;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone11,8;addressid/2005183373;supportBestPay/0;appBuild/167436;pushNoticeIsOpen/0;jdSupportDarkMode/0;pv/142.46;apprpd/CouponCenter;ref/NewCouponCenterViewController;psq/44;ads/;psn/88732f840b77821b345bf07fd71f609e6ff12f43|551;jdv/0|kong|t_1000170135|tuiguang|notset|1607732510603|1607732510;adk/;app_device/IOS;pap/JA2015_311210|9.2.5|IOS 14.2;Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"
+        "user-agent": myua
       }
     }
     $.get(options, async (err, resp, data) => {
