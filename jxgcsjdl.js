@@ -49,7 +49,9 @@ function CollectCurrentElectricity(cookie, uri, myua) {
     }
     $.get(options, async (err, resp, data) => {
       try {
-        console.log(`收集电力结果${data}`)
+        console.log(`收集电力结果${err}\n`)
+        console.log(`收集电力结果${resp}\n`)
+        console.log(`收集电力结果${data}\n`)
         // data = JSON.parse(data);
         // if (data['code'] === 5000) {
         //   console.log(`提示任务已过期，重新运行一次脚本即可获取好友邀请码`)
