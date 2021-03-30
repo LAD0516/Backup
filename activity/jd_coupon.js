@@ -17,9 +17,6 @@ cron "0 0 * * *" script-path=https://raw.githubusercontent.com/shylocks/Loon/mai
 
 ============小火箭=========
 源头好物红包 = type=cron,script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_coupon.js, cronexpr="0 0 * * *", timeout=3600, enable=true
-=======
-0 0 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_coupon.js, tag=源头好物红包, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_coupon.jpg, enabled=true
-=======
 0 0 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_coupon.js, tag=源头好物红包, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_coupon.jpg, enabled=true
 
 ================Loon==============

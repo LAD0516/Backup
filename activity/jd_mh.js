@@ -18,9 +18,6 @@
 
 ============小火箭=========
 盲盒抽京豆 = type=cron,script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_mh.js, cronexpr="1 8,12,18* * *", timeout=200, enable=true
-=======
-1 7 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_mh.js, tag=盲盒抽京豆, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_mh.jpg, enabled=true
-=======
 1 7 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_mh.js, tag=盲盒抽京豆, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_mh.jpg, enabled=true
 
 ================Loon==============

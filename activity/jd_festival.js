@@ -12,9 +12,6 @@
 
 ============小火箭=========
 京东手机年终奖 = type=cron,script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_festival.js, cronexpr="30 9 * * *", timeout=3600, enable=true
-=======
-15 0 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_festival.js, tag=京东手机年终奖, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_festival2.jpg, enabled=true
-=======
 15 0 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_festival.js, tag=京东手机年终奖, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_festival2.jpg, enabled=true
 
 ================Loon==============

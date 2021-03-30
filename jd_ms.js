@@ -14,12 +14,8 @@
 ============Quantumultx===============
 [task_local]
 #京东秒秒币
-京东秒秒币 = type=cron,cronexp="10 7 * * *",wake-system=1,timeout=200,script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_ms.js
-
-============小火箭=========
-京东秒秒币 = type=cron,script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_ms.js, cronexpr="10 7 * * *", timeout=200, enable=true
-=======
 10 7 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_ms.js, tag=京东秒秒币, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_ms.jpg, enabled=true
+=======
 =======
 10 7 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_ms.js, tag=京东秒秒币, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_ms.jpg, enabled=true
 
