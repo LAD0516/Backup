@@ -19,6 +19,7 @@ lgyybody 抓包搜索taskList 请求的头部数据即为所需要的数据 JSON
 变量 LGCK  格式 url 换行 header 换行 body
 */
 const $ = new Env('朗果英语');
+const notify = $.isNode() ? require('./sendNotify') : '';
 let status;
 status = (status = ($.getval("lgyystatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 const lgyyurlArr = [], lgyyhdArr = [],lgyybodyArr = [],lgyycount = ''
@@ -98,31 +99,52 @@ uid = id.uid
 if(result.result.taskUserEvaluationVOList[0].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[0].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
+if ($.isNode()) {
+  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+}
 await lgyyhb();
 } else if(result.result.taskUserEvaluationVOList[1].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[1].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
+if ($.isNode()) {
+  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+}
 await lgyyhb();
 }else if(result.result.taskUserEvaluationVOList[2].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[2].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
+if ($.isNode()) {
+  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+}
 await lgyyhb();
 }else if(result.result.taskUserEvaluationVOList[3].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[3].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
+if ($.isNode()) {
+  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+}
 await lgyyhb();
 }else if(result.result.taskUserEvaluationVOList[4].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[4].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
+if ($.isNode()) {
+  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+}
 await lgyyhb();
 }
 
         console.log(`\n朗果英语用户信息获取成功\n当前积分:${result.result.userScore}\n当前可提现助学金:${result.result.userRedAmout}`)    
+
+        if ($.isNode()) {
+          await notify.sendNotify(`\n朗果英语用户信息获取成功\n当前积分:${result.result.userScore}\n当前可提现助学金:${result.result.userRedAmout}\n`);
+        }
         
 } else {
 $.log(data)
 console.log('朗果英语获取用户信息失败 已停止当前账号运行!')
-
+if ($.isNode()) {
+  await notify.sendNotify(`朗果英语获取用户信息失败 已停止当前账号运行!\n`);
+}
 }
         } catch (e) {
           //$.logErr(e, resp);
