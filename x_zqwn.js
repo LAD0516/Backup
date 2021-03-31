@@ -5,83 +5,48 @@
 脚本为自动完成最强蜗牛的日常任务
 每日固定收益0.5元，十元提现
 
-注册下载链接 邀请码: 0c9bd6  下载地址：http://wn.xingguozuliao.com/app/index/qudao.html?uid=NzA0
+使用方法:打开最强蜗牛，首页我的获取用户数据  定时可以多设置几次，没任务会停止运行的
+zqwnurl 'login/login2/hydata' 抓包包含该关键字的链接
+zqwnhd 请求头
+zqwnbody 请求body
 
-或扫码下载 https://ae01.alicdn.com/kf/U3db2f09c03ec438cba2b89deb9c1b53f8.jpg
-
-本脚本以学习为主！
-使用方法:打开最强蜗牛，首页我的获取用户数据
-
-TG电报群: https://t.me/hahaha8028
-
-boxjs地址 :  
-
-https://raw.githubusercontent.com/age174/-/main/feizao.box.json
-
-最强蜗牛
-圈X配置如下，其他软件自行测试，定时可以多设置几次，没任务会停止运行的
-[task_local]
-#最强蜗牛
-10 8 * * * https://raw.githubusercontent.com/age174/-/main/zqwn.js, tag=最强蜗牛, img-url=https://ae01.alicdn.com/kf/U1748aeaa81a54cdf8797ed3fc54d76ef3.jpg, enabled=true
-
-[rewrite_local]
-#最强蜗牛
-http://wn.xingguozuliao.com/login/login2/hydata.html url script-request-body https://raw.githubusercontent.com/age174/-/main/zqwn.js
-
-#loon
-http://wn.xingguozuliao.com/login/login2/hydata.html script-path=https://raw.githubusercontent.com/age174/-/main/zqwn.js, requires-body=true, timeout=10, tag=最强蜗牛
-
-#surge
-最强蜗牛 = type=http-request,pattern=http://wn.xingguozuliao.com/login/login2/hydata.html,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/zqwn.js,script-update-interval=0
-
-[MITM]
-hostname = wn.xingguozuliao.com
-
-
+变量 ZQCK  格式 url 换行 header 换行 body
 */
-
 const $ = new Env('最强蜗牛');
+const notify = $.isNode() ? require('./sendNotify') : '';
 let status;
 status = (status = ($.getval("zqwnstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 const zqwnurlArr = [], zqwnhdArr = [],zqwnbodyArr = [],zqwncount = ''
+let zqckArr=[]
 let times = Math.round(Date.now())
-let zqwnurl = $.getdata('zqwnurl')
-let zqwnhd = $.getdata('zqwnhd')
-let zqwnbody = $.getdata('zqwnbody')
+let zqwnurl = ''
+let zqwnhd = ''
+let zqwnbody = ''
 let zqwnkey = '',id = '',uid='',tid='',name=''
-!(async () => {
-  if (typeof $request !== "undefined") {
-    await zqwnck()
-   
-  } else {zqwnurlArr.push($.getdata('zqwnurl'))
-    zqwnhdArr.push($.getdata('zqwnhd'))
-    zqwnbodyArr.push($.getdata('zqwnbody'))
-    let zqwncount = ($.getval('zqwncount') || '1');
-  for (let i = 2; i <= zqwncount; i++) {
-    zqwnurlArr.push($.getdata(`zqwnurl${i}`))
-    zqwnhdArr.push($.getdata(`zqwnhd${i}`))
-    zqwnbodyArr.push($.getdata(`zqwnbody${i}`))
-  }
-    console.log(`------------- 共${zqwnhdArr.length}个账号-------------\n`)
-      for (let i = 0; i < zqwnhdArr.length; i++) {
-        if (zqwnhdArr[i]) {
-          zqwnbody = zqwnbodyArr[i];
-          zqwnurl = zqwnurlArr[i];
-          zqwnhd = zqwnhdArr[i];
-          $.index = i + 1;
-          console.log(`\n开始【最强蜗牛${$.index}】`)
-          await zqwndz();
-          await $.wait(1000);
-          
-  }
-}}
+~(async () => {
+  if (process.env.ZQCK && process.env.ZQCK.split('\n').length > 0) {
+    zqckArr = process.env.ZQCK.split('\n');
 
+    if (zqckArr.length < 3) {
+      console.log(`CK 设置不完整 请重新设置\n`)
+      return
+    }
+
+    zqwnurl = zqckArr[0]
+    zqwnhd = zqckArr[1]
+    zqwnbody = zqckArr[2]
+
+    console.log(`\n开始【最强蜗牛】`)
+    await zqwndz();
+    await $.wait(1000);
+  } else {
+    console.log(`未监测到CK 请重新设置\n`)
+    return
+  }        
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done())
 //最强蜗牛数据获取
-
-
 function zqwnck() {
    if ($request.url.indexOf("login/login2/hydata") > -1) {
  const zqwnurl = $request.url
@@ -120,13 +85,21 @@ uid=zqwnbody.match(/uid=(.*?)&/)[1]
 tid=zqwnbody.match(/yhtk=(.*?)&/)[1]
 if(result.msg.jifenbl >= 1000){
 $.msg('最强蜗牛','','最强蜗牛当前积分已满足提现要求，请去手动提现')
+if ($.isNode()) {
+  await notify.sendNotify(`\n最强蜗牛当前积分已满足提现要求，请去手动提现\n`);
+}
 }
         console.log(`\n【最强蜗牛】获取用户信息成功\n当前用户名:${result.msg.usernc}\n当前余额:${result.msg.yuebl}\n当前积分:${result.msg.jifenbl}`)
+        if ($.isNode()) {
+          await notify.sendNotify(`\n【最强蜗牛】获取用户信息成功\n当前用户名:${result.msg.usernc}\n当前余额:${result.msg.yuebl}\n当前积分:${result.msg.jifenbl}`);
+        }
 await zqwn1();
         
 } else {
        console.log('\n【最强蜗牛】获取用户信息失败'+data)
-
+       if ($.isNode()) {
+        await notify.sendNotify(`\n【最强蜗牛】获取用户信息失败\n`);
+      }
 }
    
         } catch (e) {
