@@ -21,7 +21,8 @@ lgyybody 抓包搜索taskList 请求的头部数据即为所需要的数据 JSON
 const $ = new Env('朗果英语');
 let status;
 status = (status = ($.getval("lgyystatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
-const lgyyurlArr = [], lgyyhdArr = [],lgyybodyArr = [],lgyycount = '', lgckArr=[]
+const lgyyurlArr = [], lgyyhdArr = [],lgyybodyArr = [],lgyycount = ''
+let lgckArr=[]
 let times = Math.round(Date.now())
 let lgyyurl = ''
 let lgyyhd = ''
