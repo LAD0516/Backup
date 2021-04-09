@@ -1,6 +1,6 @@
 /*
 京东京喜工厂
-更新时间：2021-4-7
+更新时间：2021-4-9
 修复做任务、收集电力出现火爆，不能完成任务，重新计算h5st验证
 参考自 ：https://www.orzlee.com/web-development/2021/03/03/lxk0301-jingdong-signin-scriptjingxi-factory-solves-the-problem-of-unable-to-signin.html
 活动入口：京东APP-游戏与互动-查看更多-京喜工厂
@@ -105,15 +105,16 @@ if ($.isNode()) {
         continue
       }
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      await joinLeaderTuan();//参团
       if ((cookiesArr && cookiesArr.length >= ($.tuanNum || 5)) && $.canHelp) {
-        console.log(`\n账号内部相互进团\n`);
+        console.log(`\n账号${$.UserName} 内部相互进团\n`);
         for (let item of $.tuanIds) {
           console.log(`\n${$.UserName} 去参加团 ${item}`);
           if (!$.canHelp) break;
           await JoinTuan(item);
+          await $.wait(1000);
         }
       }
-      if ($.canHelp) await joinLeaderTuan();//参团
     }
   }
   if ($.isNode() && allMessage) {
@@ -966,14 +967,16 @@ async function tuanActivity() {
   }
 }
 async function joinLeaderTuan() {
-  let res = await updateTuanIdsCDN(), res2 = await updateTuanIdsCDN("https://gitee.com/shylocks/updateTeam/raw/main/jd_updateFactoryTuanId.json")
+  let res = await updateTuanIdsCDN(), res2 = await updateTuanIdsCDN("http://qr6pzoy01.hn-bkt.clouddn.com/factory.json")
+  if (!res) res = await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateFactoryTuanId.json');
   $.authorTuanIds = [...(res && res.tuanIds || []),...(res2 && res2.tuanIds || [])]
   if ($.authorTuanIds && $.authorTuanIds.length) {
-    console.log(`\n参加作者的团`);
     for (let tuanId of $.authorTuanIds) {
       if (!tuanId) continue
       if (!$.canHelp) break;
+      console.log(`\n账号${$.UserName} 参加作者lxk0301的团 【${tuanId}】`);
       await JoinTuan(tuanId);
+      await $.wait(1000);
     }
   }
 }
@@ -1188,7 +1191,7 @@ function tuanAward(activeId, tuanId, isTuanLeader = true) {
   })
 }
 
-function updateTuanIdsCDN(url = 'https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateFactoryTuanId.json') {
+function updateTuanIdsCDN(url = 'https://raw.githubusercontent.com/gitupdate/updateTeam/master/shareCodes/jd_updateFactoryTuanId.json') {
   return new Promise(async resolve => {
     $.get({url,
       timeout: 200000,
@@ -1206,11 +1209,11 @@ function updateTuanIdsCDN(url = 'https://cdn.jsdelivr.net/gh/gitupdate/updateTea
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve(data || []);
+        resolve(data);
       }
     })
     await $.wait(20000)
-    resolve([]);
+    resolve();
   })
 }
 
@@ -1321,12 +1324,20 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateFactoryTuanId.json');
+    await updateTuanIdsCDN();
     if ($.tuanConfigs && $.tuanConfigs['tuanActiveId']) {
       tuanActiveId = $.tuanConfigs['tuanActiveId'];
       console.log(`拼团活动ID: 获取成功 ${tuanActiveId}`)
     } else {
-      console.log(`拼团活动ID：获取失败`)
+      if (!$.tuanConfigs) {
+        await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateFactoryTuanId.json');
+        if ($.tuanConfigs && $.tuanConfigs['tuanActiveId']) {
+          tuanActiveId = $.tuanConfigs['tuanActiveId'];
+          console.log(`拼团活动ID: 获取成功 ${tuanActiveId}`)
+        } else {
+          console.log(`拼团活动ID：获取失败，将采取脚本内置活动ID`)
+        }
+      }
     }
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
@@ -1341,7 +1352,7 @@ function requireConfig() {
       })
     } else {
       if ($.getdata('jd_jxFactory')) $.shareCodesArr = $.getdata('jd_jxFactory').split('\n').filter(item => item !== "" && item !== null && item !== undefined);
-      console.log(`\nBoxJs设置的京喜工厂邀请码:${$.getdata('jd_jxFactory')}\n`);
+      console.log(`\nBoxJs设置的${$.name}好友邀请码:${$.getdata('jd_jxFactory')}\n`);
     }
     // console.log(`\n种豆得豆助力码::${JSON.stringify($.shareCodesArr)}`);
     console.log(`您提供了${$.shareCodesArr.length}个账号的${$.name}助力码\n`);
@@ -1419,7 +1430,7 @@ function taskTuanUrl(functionId, body = '', stk) {
       "Cookie": cookie,
       "Host": "m.jingxi.com",
       "Referer": "https://st.jingxi.com/pingou/dream_factory/divide.html",
-      "User-Agent": "jdpingou;iPhone;3.15.2;13.5.1;90bab9217f465a83a99c0b554a946b0b0d5c2f7a;network/wifi;model/iPhone12,1;appBuild/100365;ADID/696F8BD2-0820-405C-AFC0-3C6D028040E5;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/1;hasOCPay/0;supportBestPay/0;session/14;pap/JA2015_311210;brand/apple;supportJDSHWK/1;"
+      "User-Agent": "jdpingou"
     }
   }
 }
@@ -1577,7 +1588,7 @@ function decrypt(time, stk, type, url) {
       const random = '5gkjB6SpmC9s';
       $.token = `tk01wcdf61cb3a8nYUtHcmhSUFFCfddDPRvKvYaMjHkxo6Aj7dhzO+GXGFa9nPXfcgT+mULoF1b1YIS1ghvSlbwhE0Xc`;
       $.fingerprint = 5287160221454703;
-      const str = `${token}${$.fingerprint}${timestamp}${$.appId}${random}`;
+      const str = `${$.token}${$.fingerprint}${timestamp}${$.appId}${random}`;
       hash1 = $.CryptoJS.SHA512(str, token).toString($.CryptoJS.enc.Hex);
     }
     let st = '';
