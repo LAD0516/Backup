@@ -45,17 +45,9 @@ let txje = txsz[hltxje]
 let hlckArr=[]
 
 !(async () => {
-  if (process.env.HLCK && process.env.HLCK.split('\n').length > 0) {
-    hlckArr = process.env.HLCK.split('\n');
-
-    if (hlckArr.length < 3) {
-      console.log(`CK 设置不完整 请重新设置\n`)
-      return
-    }
-
-    hlyyurl = hlckArr[0]
-    hlyyhd = hlckArr[1]
-    hlyybody = hlckArr[2]
+    hlyyurl = 'https://play.gxhuancai.com/hlplay/task/doTasks?appVersion=1.1.3&deviceId=BOaPskBrFmBk2MEKUAWKkAHi%2BCMnrAOdV84eRFtFXckZ32CPwk%2BTvryn7kNgSHPC1HTvfwnGJVgqSYA0TPMC7bg%3D%3D&os=ios&tc=fyrEegQJ_ucMyp0QU-vytYqeZDWfgpvSs&ut=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4MDcxNjA0MDY1NjAwMzM5OTY4Iiwic3ViIjoiZzZIeUhPeGgzcDhFWV9vRW9iRHllY1BGemt3bG9oWndzIiwiaWF0IjoxNjE4NjMwNTg1LCJleHAiOjE2MjY0MDY1ODV9.6V6EKjNC1ByY_2JaNXFxeHCcQe_-Iw0WmuOFbvsPlNI'
+    hlyyhd = '"{"Host":"play.gxhuancai.com","Connection":"keep-alive","app_info":"1.1.3,ios,14.4.2,appstore,com.xiaoniu.hulumusic","Accept":"*/*","User-Agent":"hulumusic/1.1.3 (com.xiaoniu.hulumusic; build:22; iOS 14.4.2) Alamofire/5.4.1","Accept-Language":"en-GB;q=1.0, zh-Hans-CN;q=0.9, en-CN;q=0.8, en;q=0.7","Content-Length":"0","Accept-Encoding":"br;q=1.0, gzip;q=0.9, deflate;q=0.8"}"'
+    hlyybody = 1
 
     console.log(`\n 开始【葫芦音乐】`)
     await hlyylb();
@@ -83,10 +75,6 @@ let hlckArr=[]
     await hlyyxx()
     await hlyyme()
     await hlyytx()
-  } else {
-    console.log(`未监测到CK 请重新设置\n`)
-    return
-  }
 
 })()
   .catch((e) => $.logErr(e))
