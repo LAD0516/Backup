@@ -104,7 +104,7 @@ async function jdBeauty() {
     }
   }
   if($.userInfo.storeGold) await chargeGold()
-  await helpFriends()
+  // await helpFriends()
   await showMsg();
 }
 
