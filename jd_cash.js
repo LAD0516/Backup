@@ -24,12 +24,12 @@ const $ = new Env('签到领现金');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
+let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭通知推送
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let helpAuthor = false;
 const randomCount = $.isNode() ? 20 : 5;
-let cash_exchange = true;//是否消耗2元红包兑换200京豆，默认是
+let cash_exchange = false;//是否消耗2元红包兑换200京豆，默认是
 const inviteCodes = [
   `eU9YaL7mZqgk8GqDyXFA0Q`,
   `Yl5sMLDvMKNkpCiAiQ`
