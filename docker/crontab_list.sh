@@ -4,6 +4,8 @@
 30 * * * * sh +x /scripts/docker/auto_help.sh collect >> /scripts/logs/auto_help_collect.log 2>&1
 
 ##############短期活动##############
+#女装盲盒 活动时间：2021-05-1到2021-05-31
+35 1,22 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 
 #京东极速版红包(活动时间：2021-5-5至2021-5-5)
 45 0,23 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
@@ -70,7 +72,7 @@
 # 京东汽车(签到满500赛点可兑换500京豆)
 0 0 * * * node /scripts/jd_car.js >> /scripts/logs/jd_car.log 2>&1
 # 领京豆额外奖励(每日可获得3京豆)
-23 4 * * * node /scripts/jd_bean_home.js >> /scripts/logs/jd_bean_home.log 2>&1
+23 */1 * * * node /scripts/jd_bean_home.js >> /scripts/logs/jd_bean_home.log 2>&1
 # 微信小程序京东赚赚
 6 0-5/1,11 * * * node /scripts/jd_jdzz.js >> /scripts/logs/jd_jdzz.log 2>&1
 # crazyJoy自动每日任务

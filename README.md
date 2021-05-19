@@ -141,8 +141,7 @@
 ```
 # QuantumultX
 
-#东东农场
-5 6-18/6 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_fruit.js, tag=东东农场, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdnc.png, enabled=true
+<div align=center><img width="250" height="250" src="https://cdn.jsdelivr.net/gh/wisz2021/jd_docker@main/icon/thanks.jpg"/></div>
 
 #东东萌宠
 15 6-18/6 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_pet.js, tag=东东萌宠, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png, enabled=true
