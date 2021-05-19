@@ -1,59 +1,46 @@
-/* ziye 
+/* ziye
 github地址 https://github.cn/ziye888
 TG频道地址 https://t.me/ziyescript
 TG交流群 https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
 boxjs链接 https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/ziye.boxjs.json
 圈X task订阅 https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/ziye-gallery.json
-
 转载请备注个名字，谢谢
-
 ⚠️特仑苏小程序    需要 微信    兑换特仑苏牛奶 
   
 >>点击  https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/tls.png  扫码进入    谢谢支持
-
 4.23 制作
 4.24 完成
 4.24.21 去除ck触发机制
 4.25.15 修复加餐判定，优化逻辑
 4.26.13 修复答题判定，调整为8个助力位
-
+5.1.15 修复自动答题
+5.4.12 调整为26个助力位
+5.5.13 添加助力详情
+5.15.13 修复加餐任务判定
 ⚠️   ck只有几个小时的有效期，不要关闭ck重写    
 建议每天12点进入小程序获取ck，点击我的奖品也可以获取ck， 手动运行一次或者定时 7 27,47 12 * * *
-
 ⚠️一共  2个ck  👉 2条 Secrets
-
 ⚠️关于助力，一天一次，同一个人一周一次，脚本默认助力作者，可自行boxjs处更改
-
 手机端默认使用boxjs👉 node请复制boxjs会话粘贴至tlsCOOKIE.js中 或者 填写环境变量(多账号请换行)
-
 第一步⚠️添加 hostname =xw.mengniu.cn,
-
 👉进入小程序获取
-
-tlsurlVal = $request.headers.Referer;
-tlsheaderVal = $request.headers.Cookie;
-
-tlsurlVal👉TLS_tlsURL👉Referer
-tlsheaderVal👉TLS_tlsHEADER👉Cookie
+tlsheaderVal👉TLS_tlsURL👉url
+tlsheaderVal👉TLS_tlsHEADER👉header
  
 ⚠️主机名以及重写👇  一次只开一条重写
 hostname =xw.mengniu.cn,
-
 //////////////////////////// 圈x
 //特仑苏获取ck
 https:\/\/xw\.mengniu\.cn\/grass\/Api\/TelunsuHandler\.ashx\?method\=GetMyPrize url script-request-header https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/tls.js
-
 //////////////////////////// loon
 //特仑苏获取ck
 http-request https:\/\/xw\.mengniu\.cn\/grass\/Api\/TelunsuHandler\.ashx\?method\=GetMyPrize script-path=https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/tls.js, requires-header=true, tag=特仑苏获取ck
-
 //////////////////////////// surge
 //特仑苏获取ck
 特仑苏获取ck = type=http-request,pattern=https:\/\/xw\.mengniu\.cn\/grass\/Api\/TelunsuHandler\.ashx\?method\=GetMyPrize,requires-header=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/tls.js
-
 */
 
-GXRZ = '4.26.13 修复答题判定，调整为8个助力位'
+GXRZ = '5.5.13 添加助力详情'
 const $ = Env("特仑苏");
 $.idx = ($.idx = ($.getval('tlsSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -62,7 +49,7 @@ const logs = 0; // 0关闭日志，1原始日志，2格式化，3格式化且解
 notifyttt = 1; // 0为关闭外部推送，1为12 23 点外部推送
 notifyInterval = 1; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 Minutes = 10; // 通知 默认控制在0-10分内
-$.message = '', COOKIES_SPLIT = '', CASH = '', hyidA = 0, hyidB = 0, hyidC = 0, hyidD = 0, hyidE = 0, hyidF = 0, hyidG = 0, hyidH = 0, XH = 0, XYZ = 100, Length = 0, ddtime = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', HYIDS = 1, hyidA = 0, hyidB = 0, hyidC = 0, hyidD = 0, hyidE = 0, hyidF = 0, hyidG = 0, hyidH = 0, hyidI = 0, hyidJ = 0, hyidK = 0, hyidL = 0, hyidM = 0, hyidN = 0, hyidO = 0, hyidP = 0, hyidQ = 0, hyidR = 0, hyidS = 0, hyidT = 0, hyidU = 0, hyidV = 0, hyidW = 0, hyidX = 0, hyidY = 0, hyidZ = 0, XH = 0, XYZ = 100, Length = 0, ddtime = '';
 
 tlsbodys = ``;
 let tlsurlArr = [];
@@ -77,14 +64,34 @@ let middletlsHEADER = [];
 if ($.isNode() && process.env.TLS_tlsHEADER) {
 
     XYZ = process.env.TLS_XYZ || "100";
-    /* hyidA = process.env.TLS_hyidA || "64926";
-    hyidB = process.env.TLS_hyidB || "70405";
-    hyidC = process.env.TLS_hyidC || "73261";
-    hyidD = process.env.TLS_hyidD || "98692";
-    hyidE = process.env.TLS_hyidE || "98825";
-    hyidF = process.env.TLS_hyidF || "98860";
+    /* hyidA = process.env.TLS_hyidA || "1552458";
+    hyidB = process.env.TLS_hyidB || "1552716";
+    hyidC = process.env.TLS_hyidC || "1552713";
+    hyidD = process.env.TLS_hyidD || "1552663";
+    hyidE = process.env.TLS_hyidE || "1552717";
+    hyidF = process.env.TLS_hyidF || "1552715";
     hyidG = process.env.TLS_hyidG || "98910";
-    hyidH = process.env.TLS_hyidH || "114043"; */
+    hyidH = process.env.TLS_hyidH || "114043";
+    hyidI = process.env.TLS_hyidI || "114736";
+    hyidJ = process.env.TLS_hyidJ || "112833";
+    hyidK = process.env.TLS_hyidK || "113329";
+
+    hyidL = process.env.TLS_hyidL || "109172";
+    hyidM = process.env.TLS_hyidM || "364156";
+    hyidN = process.env.TLS_hyidN || "147562";
+    hyidO = process.env.TLS_hyidO || "161866";
+    hyidP = process.env.TLS_hyidP || "109012";
+    hyidQ = process.env.TLS_hyidQ || "109377";
+    hyidR = process.env.TLS_hyidR || "397595";
+    hyidS = process.env.TLS_hyidS || "114992";
+    hyidT = process.env.TLS_hyidT || "117104";
+    hyidU = process.env.TLS_hyidU || "122263";
+    hyidV = process.env.TLS_hyidV || "141969";
+    hyidW = process.env.TLS_hyidW || "110059";
+    hyidX = process.env.TLS_hyidX || "117972";
+    hyidY = process.env.TLS_hyidY || "206817";
+    hyidZ = process.env.TLS_hyidZ || "109566"; */
+
     notifyttt = process.env.TLS_notifyttt || "1";
     notifyInterval = process.env.TLS_notifyInterval || "1";
     Minutes = process.env.TLS_Minutes || "10";
@@ -103,7 +110,7 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
     ) {
         middletlsURL = process.env.TLS_tlsURL.split(COOKIES_SPLIT);
     } else {
-        middletlsURL = [process.env.TLS_tlsURL];
+        middletlsURL = process.env.TLS_tlsURL.split();
     }
     Object.keys(middletlsURL).forEach((item) => {
         if (middletlsURL[item]) {
@@ -118,7 +125,7 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
     ) {
         middletlsHEADER = process.env.TLS_tlsHEADER.split(COOKIES_SPLIT);
     } else {
-        middletlsHEADER = [process.env.TLS_tlsHEADER];
+        middletlsHEADER = process.env.TLS_tlsHEADER.split();
     }
     Object.keys(middletlsHEADER).forEach((item) => {
         if (middletlsHEADER[item]) {
@@ -140,6 +147,32 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
     hyidF = (COOKIE.settings.find(item => item.id === `tlshyidF`)).val;
     hyidG = (COOKIE.settings.find(item => item.id === `tlshyidG`)).val;
     hyidH = (COOKIE.settings.find(item => item.id === `tlshyidH`)).val;
+    hyidI = (COOKIE.settings.find(item => item.id === `tlshyidI`)).val;
+    hyidJ = (COOKIE.settings.find(item => item.id === `tlshyidJ`)).val;
+    hyidK = (COOKIE.settings.find(item => item.id === `tlshyidK`)).val;
+
+    hyidL = (COOKIE.settings.find(item => item.id === `tlshyidL`)).val;
+    hyidM = (COOKIE.settings.find(item => item.id === `tlshyidM`)).val;
+    hyidN = (COOKIE.settings.find(item => item.id === `tlshyidN`)).val;
+    hyidO = (COOKIE.settings.find(item => item.id === `tlshyidO`)).val;
+    hyidP = (COOKIE.settings.find(item => item.id === `tlshyidP`)).val;
+    hyidQ = (COOKIE.settings.find(item => item.id === `tlshyidQ`)).val;
+    hyidR = (COOKIE.settings.find(item => item.id === `tlshyidR`)).val;
+    hyidS = (COOKIE.settings.find(item => item.id === `tlshyidS`)).val;
+    hyidT = (COOKIE.settings.find(item => item.id === `tlshyidT`)).val;
+    hyidU = (COOKIE.settings.find(item => item.id === `tlshyidU`)).val;
+    hyidV = (COOKIE.settings.find(item => item.id === `tlshyidV`)).val;
+    hyidW = (COOKIE.settings.find(item => item.id === `tlshyidW`)).val;
+    hyidX = (COOKIE.settings.find(item => item.id === `tlshyidX`)).val;
+    hyidY = (COOKIE.settings.find(item => item.id === `tlshyidY`)).val;
+    hyidZ = (COOKIE.settings.find(item => item.id === `tlshyidZ`)).val;
+
+
+
+
+
+
+
     notifyInterval = (COOKIE.settings.find(item => item.id === `tlsnotifyInterval`)).val;
     Minutes = (COOKIE.settings.find(item => item.id === `tlsMinutes`)).val;
     tlsCount = (COOKIE.settings.find(item => item.id === `tlsCount`)).val || '1';
@@ -161,29 +194,91 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
         XH = $.getval("tlsXYZ") || '100';
     }
     if ("tlshyidA") {
-        hyidA = $.getval("tlshyidA") || '64926';
+        hyidA = $.getval("tlshyidA") || '1552458';
     }
     if ("tlshyidB") {
-        hyidB = $.getval("tlshyidB") || '70405';
+        hyidB = $.getval("tlshyidB") || '1552716';
     }
     if ("tlshyidC") {
-        hyidC = $.getval("tlshyidC") || '73261';
+        hyidC = $.getval("tlshyidC") || '1552713';
     }
     if ("tlshyidD") {
-        hyidD = $.getval("tlshyidD") || '98692';
+        hyidD = $.getval("tlshyidD") || '1552663';
     }
     if ("tlshyidE") {
-        hyidE = $.getval("tlshyidE") || '98825';
+        hyidE = $.getval("tlshyidE") || '1552717';
     }
     if ("tlshyidF") {
-        hyidF = $.getval("tlshyidF") || '98860';
+        hyidF = $.getval("tlshyidF") || '1552715';
     }
     if ("tlshyidG") {
         hyidG = $.getval("tlshyidG") || '98910';
     }
     if ("tlshyidH") {
-        hyidG = $.getval("tlshyidH") || '114043';
+        hyidH = $.getval("tlshyidH") || '114043';
     }
+
+    if ("tlshyidI") {
+        hyidI = $.getval("tlshyidI") || '114736';
+    }
+    if ("tlshyidJ") {
+        hyidJ = $.getval("tlshyidJ") || '112833';
+    }
+    if ("tlshyidK") {
+        hyidK = $.getval("tlshyidK") || '113329';
+    }
+
+
+
+    if ("tlshyidL") {
+        hyidL = $.getval("tlshyidL") || '109172';
+    }
+    if ("tlshyidM") {
+        hyidM = $.getval("tlshyidM") || '364156';
+    }
+    if ("tlshyidN") {
+        hyidN = $.getval("tlshyidN") || '147562';
+    }
+    if ("tlshyidO") {
+        hyidO = $.getval("tlshyidO") || '161866';
+    }
+    if ("tlshyidP") {
+        hyidP = $.getval("tlshyidP") || '109012';
+    }
+
+    if ("tlshyidQ") {
+        hyidQ = $.getval("tlshyidQ") || '109377';
+    }
+    if ("tlshyidR") {
+        hyidR = $.getval("tlshyidR") || '397595';
+    }
+    if ("tlshyidS") {
+        hyidS = $.getval("tlshyidS") || '114992';
+    }
+    if ("tlshyidT") {
+        hyidT = $.getval("tlshyidT") || '117104';
+    }
+    if ("tlshyidU") {
+        hyidU = $.getval("tlshyidU") || '122263';
+    }
+
+
+    if ("tlshyidV") {
+        hyidV = $.getval("tlshyidV") || '141969';
+    }
+    if ("tlshyidW") {
+        hyidW = $.getval("tlshyidW") || '110059';
+    }
+    if ("tlshyidX") {
+        hyidX = $.getval("tlshyidX") || '117972';
+    }
+    if ("tlshyidY") {
+        hyidY = $.getval("tlshyidY") || '206817';
+    }
+    if ("tlshyidZ") {
+        hyidZ = $.getval("tlshyidZ") || '109566';
+    }
+
 
     if ("tlsnotifyttt") {
         notifyttt = $.getval("tlsnotifyttt") || '1';
@@ -433,7 +528,7 @@ async function all() {
 
                 if (signinfo.isaccomplish == 0) {
 
-                    DD = RT(300, 1000)
+                    DD = RT(500, 1000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
 
@@ -448,7 +543,7 @@ async function all() {
                     tlsbody = ``
                     await task();
 
-                    DD = RT(300, 1000)
+                    DD = RT(500, 1000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
 
@@ -471,7 +566,7 @@ async function all() {
                     tlsbody = `ClickInfo=%E7%89%A7%E5%9C%BA%E9%A1%B5-%E8%8B%8F%E8%8B%8F%E4%B9%90%E5%9B%AD&ClickType=7&OpenType=2`
                     await task();
 
-                    DD = RT(300, 1000)
+                    DD = RT(500, 1000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
 
@@ -486,7 +581,7 @@ async function all() {
                     tlsbody = `InterName=susuMeijia`
                     await task();
 
-                    DD = RT(300, 1000)
+                    DD = RT(500, 1000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
 
@@ -501,7 +596,7 @@ async function all() {
                     tlsbody = `InterName=susuRiguangyu`
                     await task();
 
-                    DD = RT(300, 1000)
+                    DD = RT(500, 1000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
 
@@ -519,8 +614,8 @@ async function all() {
                 }
 
 
-                if (Lunchinfo.isaccomplish == 1) {
-                    DD = RT(300, 1000)
+                if (nowTimes.getHours() == 12) {
+                    DD = RT(500, 1000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
 
@@ -536,7 +631,7 @@ async function all() {
                     await task();
                 }
 
-                DD = RT(300, 1000)
+                DD = RT(500, 1000)
                 console.log(`随机延迟${DD/1000}秒`)
                 await $.wait(DD)
 
@@ -552,15 +647,30 @@ async function all() {
                 tlsbody = ``
                 await task();
 
+
+
+
+
                 if ($.Getanswer.result.ispaly == 0 && $.Getanswer.result.isopen == 1) {
 
-                    K = `提交答题🚩`;
-                    tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddanswerOrder`
-                    tlsbody = encodeURIComponent(tlsbodys).replace(/%3D/g, '=').replace(/%26/g, '&')
+
+                    K = `执行操作🚩`;
+                    tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddClick`
+                    tlsbody = `ClickInfo=%E9%99%90%E6%97%B6%E9%97%AF%E5%85%B3%E5%BC%80%E5%90%AF%E9%A1%B5-%E5%87%86%E5%A4%87%E5%A5%BD%E4%BA%86&ClickType=2&OpenType=2`
+                    await task();
+
 
                     DD = RT(35000, 40000)
                     console.log(`随机延迟${DD/1000}秒`)
                     await $.wait(DD)
+                    K = `执行操作🚩`;
+                    tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddClick`
+                    tlsbody = `ClickInfo=%E9%99%90%E6%97%B6%E9%97%AF%E5%85%B3%E7%AD%94%E9%A2%98%E9%A1%B5-%E6%8F%90%E4%BA%A4&ClickType=2&OpenType=2`
+                    await task();
+
+                    K = `提交答题🚩`;
+                    tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddanswerOrder`
+                    tlsbody = encodeURIComponent(tlsbodys).replace(/%3D/g, '=').replace(/%26/g, '&')
                     await task();
 
                 }
@@ -571,7 +681,7 @@ async function all() {
                 await task();
 
 
-                DD = RT(300, 1000)
+                DD = RT(500, 1000)
                 console.log(`随机延迟${DD/1000}秒`)
                 await $.wait(DD)
 
@@ -588,18 +698,18 @@ async function all() {
                 await task();
 
 
-                HYID = [hyidA, hyidB, hyidC, hyidD, hyidE, hyidF, hyidG, hyidH]
+                HYID = [hyidA, hyidB, hyidC, hyidD, hyidE, hyidF, hyidG, hyidH, hyidI, hyidJ, hyidK, hyidL, hyidM, hyidN, hyidO, hyidP, hyidQ, hyidR, hyidS, hyidT, hyidU, hyidV, hyidW, hyidX, hyidY, hyidZ]
                 K = `好友信息🚩`;
                 tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=GetUserFriendInfo`
                 tlsbody = `userid=${HYID[0]}`
-                DD = RT(300, 1000)
+                DD = RT(500, 1000)
                 console.log(`随机延迟${DD/1000}秒`)
                 await $.wait(DD)
                 await task();
 
                 K = `添加好友🚩`;
                 tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddFriend`
-                DD = RT(300, 1000)
+                DD = RT(500, 1000)
                 console.log(`随机延迟${DD/1000}秒`)
                 await $.wait(DD)
                 await task();
@@ -612,21 +722,22 @@ async function all() {
                 K = `助力好友🚩`;
                 tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddShare`
                 tlsbody = `userid=${HYID[0]}`
-                DD = RT(300, 1000)
+                DD = RT(500, 1000)
                 console.log(`随机延迟${DD/1000}秒`)
                 await $.wait(DD)
                 await task();
 
 
 
-                for (let i = 1; i < 8; i++) {
+                for (let i = 1; i < HYID.length; i++) {
+                    HYIDS = i + 1
 
                     if ($.AddShare.errcode == 1 && $.AddShare.errmsg.indexOf("每天只能助力一次") < 0) {
 
                         K = `好友信息🚩`;
                         tlsbody = `userid=${HYID[i]}`
                         tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=GetUserFriendInfo`
-                        DD = RT(300, 1000)
+                        DD = RT(500, 1000)
                         console.log(`随机延迟${DD/1000}秒`)
                         await $.wait(DD)
                         await task();
@@ -634,7 +745,7 @@ async function all() {
                         K = `添加好友🚩`;
                         tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddFriend`
                         //console.log(tlsbody)
-                        DD = RT(300, 1000)
+                        DD = RT(500, 1000)
                         console.log(`随机延迟${DD/1000}秒`)
                         await $.wait(DD)
                         await task();
@@ -647,7 +758,7 @@ async function all() {
                         K = `助力好友🚩`;
                         tlsurl = `https://xw.mengniu.cn/grass/Api/TelunsuHandler.ashx?method=AddShare`
                         tlsbody = `userid=${HYID[i]}`
-                        DD = RT(300, 1000)
+                        DD = RT(500, 1000)
                         console.log(`随机延迟${DD/1000}秒`)
                         await $.wait(DD)
                         await task();
@@ -674,7 +785,7 @@ async function all() {
                     if ($.GetUserValues.result.grass_seed >= 100) {
 
                         CZCS = i
-                        DD = RT(300, 1000)
+                        DD = RT(500, 1000)
                         console.log(`随机延迟${DD/1000}秒`)
                         await $.wait(DD)
 
@@ -834,7 +945,7 @@ function task() {
                             if (logs) $.log(`${O}, ${K}: ${format(data)}`);
                             $.FriendInfo = JSON.parse(data);
                             if ($.FriendInfo.errcode == 0) {
-                                console.log(`好友信息：${$.FriendInfo.result.nickname} id ${$.FriendInfo.result.id} ${$.FriendInfo.result.milk}滴奶\n`)
+                                console.log(`好友信息：${HYIDS} ${$.FriendInfo.result.nickname} id ${$.FriendInfo.result.id} ${$.FriendInfo.result.milk}滴奶\n`)
 
                             }
                         }
@@ -843,8 +954,8 @@ function task() {
                             if (logs) $.log(`${O}, ${K}: ${format(data)}`);
                             $.AddShare = JSON.parse(data);
                             if ($.AddShare.errcode == 0) {
-                                console.log(`助力好友：助力成功\n`)
-                                $.message += `【助力好友】：助力成功\n`;
+                                console.log(`助力好友：助力成功 ${HYIDS} ${$.FriendInfo.result.nickname} id ${$.FriendInfo.result.id}\n`)
+                                $.message += `【助力好友】：助力成功 ${HYIDS} ${$.FriendInfo.result.nickname} id ${$.FriendInfo.result.id}\n`;
                             } else {
                                 console.log(`助力好友：${$.AddShare.errmsg}\n`)
 
@@ -900,19 +1011,21 @@ function task() {
                                     $.message += `【周末答题】：未开始\n`;
 
                                 } else if ($.Getanswer.result.ispaly == 0) {
-                                    DTA = $.Getanswer.result.answerlist.find(item => item.id == 1).answer_right;
-                                    DTB = $.Getanswer.result.answerlist.find(item => item.id == 2).answer_right;
-                                    DTC = $.Getanswer.result.answerlist.find(item => item.id == 3).answer_right;
-                                    DTD = $.Getanswer.result.answerlist.find(item => item.id == 4).answer_right;
-                                    DTE = $.Getanswer.result.answerlist.find(item => item.id == 5).answer_right;
-                                    DTF = $.Getanswer.result.answerlist.find(item => item.id == 6).answer_right;
-                                    DTG = $.Getanswer.result.answerlist.find(item => item.id == 7).answer_right;
-                                    DTH = $.Getanswer.result.answerlist.find(item => item.id == 8).answer_right;
-                                    DTI = $.Getanswer.result.answerlist.find(item => item.id == 9).answer_right;
-                                    DTJ = $.Getanswer.result.answerlist.find(item => item.id == 10).answer_right;
+                                    DT = ($.Getanswer.result.times[0].id - 1) * 10
+
+                                    DTA = $.Getanswer.result.answerlist.find(item => item.id == DT + 1);
+                                    DTB = $.Getanswer.result.answerlist.find(item => item.id == DT + 2);
+                                    DTC = $.Getanswer.result.answerlist.find(item => item.id == DT + 3);
+                                    DTD = $.Getanswer.result.answerlist.find(item => item.id == DT + 4);
+                                    DTE = $.Getanswer.result.answerlist.find(item => item.id == DT + 5);
+                                    DTF = $.Getanswer.result.answerlist.find(item => item.id == DT + 6);
+                                    DTG = $.Getanswer.result.answerlist.find(item => item.id == DT + 7);
+                                    DTH = $.Getanswer.result.answerlist.find(item => item.id == DT + 8);
+                                    DTI = $.Getanswer.result.answerlist.find(item => item.id == DT + 9);
+                                    DTJ = $.Getanswer.result.answerlist.find(item => item.id == DT + 10);
                                     FF = RT(25, 35)
 
-                                    tlsbodys = `answerList=[{"question_id":1,"question_answer":"${DTA}","time_interval":""},{"question_id":2,"question_answer":"${DTB}","time_interval":""},{"question_id":3,"question_answer":"${DTC}","time_interval":""},{"question_id":4,"question_answer":"${DTD}","time_interval":""},{"question_id":5,"question_answer":"${DTE}","time_interval":""},{"question_id":6,"question_answer":"${DTF}","time_interval":""},{"question_id":7,"question_answer":"${DTG}","time_interval":""},{"question_id":8,"question_answer":"${DTH}","time_interval":""},{"question_id":9,"question_answer":"${DTI}","time_interval":""},{"question_id":10,"question_answer":"${DTJ}","time_interval":""}]&alltime=${FF}`
+                                    tlsbodys = `answerList=[{"question_id":${DTA.id},"question_answer":"${DTA.answer_right}","time_interval":""},{"question_id":${DTB.id},"question_answer":"${DTB.answer_right}","time_interval":""},{"question_id":${DTC.id},"question_answer":"${DTC.answer_right}","time_interval":""},{"question_id":${DTD.id},"question_answer":"${DTD.answer_right}","time_interval":""},{"question_id":${DTE.id},"question_answer":"${DTE.answer_right}","time_interval":""},{"question_id":${DTF.id},"question_answer":"${DTF.answer_right}","time_interval":""},{"question_id":${DTG.id},"question_answer":"${DTG.answer_right}","time_interval":""},{"question_id":${DTH.id},"question_answer":"${DTH.answer_right}","time_interval":""},{"question_id":${DTI.id},"question_answer":"${DTI.answer_right}","time_interval":""},{"question_id":${DTJ.id},"question_answer":"${DTJ.answer_right}","time_interval":""}]&alltime=${FF}`
 
                                     console.log(`周末答题：开始进行答题\n`)
                                     $.message += `【周末答题】：开始进行答题\n`;
