@@ -64,8 +64,8 @@ let middletlsHEADER = [];
 if ($.isNode() && process.env.TLS_tlsHEADER) {
 
     XYZ = process.env.TLS_XYZ || "100";
-    /* hyidA = process.env.TLS_hyidA || "1552458";
-    hyidB = process.env.TLS_hyidB || "1552716";
+    hyidA = "1490635";
+    /* hyidB = process.env.TLS_hyidB || "1552716";
     hyidC = process.env.TLS_hyidC || "1552713";
     hyidD = process.env.TLS_hyidD || "1552663";
     hyidE = process.env.TLS_hyidE || "1552717";
@@ -194,7 +194,7 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
         XH = $.getval("tlsXYZ") || '100';
     }
     if ("tlshyidA") {
-        hyidA = $.getval("tlshyidA") || '1552458';
+        hyidA = $.getval("tlshyidA") || '1490635';
     }
     if ("tlshyidB") {
         hyidB = $.getval("tlshyidB") || '1552716';
