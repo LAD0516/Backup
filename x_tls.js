@@ -110,7 +110,7 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
     ) {
         middletlsURL = process.env.TLS_tlsURL.split(COOKIES_SPLIT);
     } else {
-        middletlsURL = process.env.TLS_tlsURL.split();
+        middletlsURL = [process.env.TLS_tlsURL];
     }
     Object.keys(middletlsURL).forEach((item) => {
         if (middletlsURL[item]) {
@@ -125,7 +125,7 @@ if ($.isNode() && process.env.TLS_tlsHEADER) {
     ) {
         middletlsHEADER = process.env.TLS_tlsHEADER.split(COOKIES_SPLIT);
     } else {
-        middletlsHEADER = process.env.TLS_tlsHEADER.split();
+        middletlsHEADER = [process.env.TLS_tlsHEADER];
     }
     Object.keys(middletlsHEADER).forEach((item) => {
         if (middletlsHEADER[item]) {
