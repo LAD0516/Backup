@@ -51,7 +51,10 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-let inviteCodes = [];
+let inviteCodes = [
+  '9d3c8f14-a36b-45ea-b52c-da3c62d2db6b@19041acb-2189-4e0f-b2b9-069e187524e4',
+  '9d3c8f14-a36b-45ea-b52c-da3c62d2db6b@19041acb-2189-4e0f-b2b9-069e187524e4'
+];
 const JD_API_HOST = 'https://carnivalcity.m.jd.com';
 const activeEndTime = '2021/06/21 00:00:00+08:00';
 !(async () => {
