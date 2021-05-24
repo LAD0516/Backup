@@ -394,7 +394,7 @@ function jsonParse(str) {
   }
 }
 async function sendCode() {
-  if ($.isNode()) {
+  if ($.isNode() && codeArr.length) {
     await notify.sendNotify(`/submit_activity_codes city ${codeArr.join('&')}`);
   }
 }
