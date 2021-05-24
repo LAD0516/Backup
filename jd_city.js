@@ -152,7 +152,7 @@ function getInfo(inviteId, flag = false) {
             if (data.code === 0) {
               if (data.data && data['data']['bizCode'] === 0) {
                 if (flag) console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.data && data.data.result.userActBaseInfo.inviteId}\n`);
-                codeArr.push(data.data.result.userActBaseInfo.inviteId)
+                formatCode(data.data.result.userActBaseInfo.inviteId)
                 for(let vo of data.data.result && data.data.result.mainInfos || []){
                   if (vo && vo.remaingAssistNum === 0 && vo.status === "1") {
                     console.log(vo.roundNum)
@@ -391,6 +391,13 @@ function jsonParse(str) {
       $.msg($.name, '', '请勿随意在BoxJs输入框修改内容\n建议通过脚本去获取cookie')
       return [];
     }
+  }
+}
+// 格式化互助码
+function formatCode(code) {
+  let flagArr = codeArr.filter(val => val == code)
+  if (!flagArr.length) {
+    codeArr.push(code)
   }
 }
 async function sendCode() {
