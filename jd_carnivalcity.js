@@ -63,7 +63,7 @@ const activeEndTime = '2021/06/21 00:00:00+08:00';
     return;
   }
   $.temp = [];
-  await updateShareCodesCDN();
+  // await updateShareCodesCDN();
   await requireConfig();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -597,7 +597,7 @@ function updateShareCodesCDN(url = 'https://cdn.jsdelivr.net/gh/gitupdate/update
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-          $.updatePkActivityIdRes = JSON.parse(data);
+          $.updatePkActivityIdRes = null // JSON.parse(data);
         }
       } catch (e) {
         $.logErr(e, resp)
