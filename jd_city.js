@@ -395,7 +395,7 @@ function jsonParse(str) {
 }
 async function sendCode() {
   if ($.isNode() && codeArr.length) {
-    await notify.sendNotify(`/submit_activity_codes city ${codeArr.join('&')}`);
+    await notify.sendNotify('分现金助力码\n',`/submit_activity_codes city ${codeArr.join('&')}`);
   }
 }
 // prettier-ignore
