@@ -393,7 +393,7 @@ function jsonParse(str) {
     }
   }
 }
-function sendCode() {
+async function sendCode() {
   if ($.isNode()) {
     await notify.sendNotify(`/submit_activity_codes city ${codeArr.join('&')}`);
   }
