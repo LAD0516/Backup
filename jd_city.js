@@ -68,7 +68,7 @@ let inviteCodes = []
       }
       // await shareCodesFormat()
       await getInfo('',true);
-      for (let i = 0; i < $.newShareCodes.length; ++i) {
+      /* for (let i = 0; i < $.newShareCodes.length; ++i) {
         console.log(`开始助力 【${$.newShareCodes[i]}】`)
         let res = await getInfo($.newShareCodes[i])
         if (res && res['data']['bizCode'] === 0) {
@@ -81,7 +81,7 @@ let inviteCodes = []
           // 助力次数耗尽 || 黑号
           break
         }
-      }
+      } */
       await getInviteInfo();//雇佣
       if (exchangeFlag) {
         const res = await city_lotteryAward();//抽奖
