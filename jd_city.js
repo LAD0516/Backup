@@ -400,6 +400,8 @@ async function sendCode() {
   if ($.isNode() && codeArr.length && hourFlag == 14) {
     let newArr = [...new Set(codeArr)]
     await notify.sendNotify('分现金助力码\n',`/submit_activity_codes city ${newArr.join('&')}`);
+  } else {
+    console.log(`未到推送时间\n`)
   }
 }
 // prettier-ignore
