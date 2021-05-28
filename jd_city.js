@@ -152,7 +152,7 @@ function getInfo(inviteId, flag = false) {
             if (data.code === 0) {
               if (data.data && data['data']['bizCode'] === 0) {
                 if (flag) console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.data && data.data.result.userActBaseInfo.inviteId}\n`);
-                formatCode(data.data.result.userActBaseInfo.inviteId)
+                codeArr.push(data.data.result.userActBaseInfo.inviteId)
                 for(let vo of data.data.result && data.data.result.mainInfos || []){
                   if (vo && vo.remaingAssistNum === 0 && vo.status === "1") {
                     console.log(vo.roundNum)
@@ -393,16 +393,13 @@ function jsonParse(str) {
     }
   }
 }
-// 格式化互助码
-function formatCode(code) {
-  let flagArr = codeArr.filter(val => val == code)
-  if (!flagArr.length) {
-    codeArr.push(code)
-  }
-}
+
+// 晚上通知一次
 async function sendCode() {
-  if ($.isNode() && codeArr.length) {
-    await notify.sendNotify('分现金助力码\n',`/submit_activity_codes city ${codeArr.join('&')}`);
+  let hourFlag = new Date().getHours()
+  if ($.isNode() && codeArr.length && hourFlag == 14) {
+    let newArr = [...new Set(codeArr)]
+    await notify.sendNotify('分现金助力码\n',`/submit_activity_codes city ${newArr.join('&')}`);
   }
 }
 // prettier-ignore
