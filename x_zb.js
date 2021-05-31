@@ -87,7 +87,7 @@ function openbox(timeout = 0) {
 let url = {
         url : `https://app.zaaap.cn/points/home/openbox`,
         headers : JSON.parse(JSON.stringify(headerCK)),
-        body : {pageSize: 4},
+        body : '',
 }
       $.post(url, async (err, resp, data) => {
         try {
@@ -111,7 +111,7 @@ function index(timeout = 0) {
 let url = {
         url : `https://app.zaaap.cn/points/home/index`,
         headers : JSON.parse(JSON.stringify(headerCK)),
-        body : {pageSize: 4},
+        body : '',
 }
       $.post(url, async (err, resp, data) => {
         try {
