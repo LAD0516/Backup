@@ -60,10 +60,7 @@ let headerCK = {
   vesioncode: '3.0.0'
 }
 !(async () => {
-  zburl = zburlArr[i];
-  zbbody = zbbodyArr[i];
-  zbhd = zbhdArr[i];
-  console.log(`\n开始ZEALER【${$.index}】`)
+  console.log(`\n开始ZEALER`)
   await openbox();
   await $.wait(1000);
   await index();
