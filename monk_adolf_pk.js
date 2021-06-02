@@ -36,8 +36,8 @@ if ($.isNode()) {
 	].filter((item) => !!item);
 }
 const JD_API_HOST = "https://api.m.jd.com/client.action";
-let authorPin='3cb2c083dc34b258cba098268efd802d';
-$.helpAuthor=false;
+let authorPin='62f34fb371970b2d2f0ee6710542174a';
+$.helpAuthor=true;
 !(async () => {
 	if (!cookiesArr[0]) {
 		$.msg(
