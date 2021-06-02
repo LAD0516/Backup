@@ -27,7 +27,7 @@ if ($.isNode()) {
 	Object.keys(jdCookieNode).forEach((item) => {
 		cookiesArr.push(jdCookieNode[item]);
 	});
-	if (process.env.JD_DEBUG && process.env.JD_DEBUG === "false") that.log = () => {};
+	if (process.env.JD_DEBUG && process.env.JD_DEBUG === "false") console.log = () => {};
 } else {
 	cookiesArr = [
 		$.getdata("CookieJD"),
@@ -57,7 +57,7 @@ $.helpAuthor=false;
 			);
 			$.index = i + 1;
 			message = "";
-			that.log(`\n******开始【京东账号${$.index}】${$.UserName}*********\n`);
+			console.log(`\n******开始【京东账号${$.index}】${$.UserName}*********\n`);
 			await main()
 		}
 	}
@@ -78,21 +78,21 @@ function showMsg() {
 
 async function main() {
 	await getToken();
-	that.log("当前token：" + $.token);
+	console.log("当前token：" + $.token);
 	if ($.token) {
 		await getPin();
 		if ($.pin) {
-			that.log("当前pin：" + $.pin);
+			console.log("当前pin：" + $.pin);
 		}
 		await getPinList();
 		let myScore=await getScore($.pin);
-		that.log("我的京享值:"+myScore);
+		console.log("我的京享值:"+myScore);
 		if($.pinList){
 		    for(let index=0;index<$.pinList.length;index++){
 		        let item=$.pinList[index];
 		         let pin=item.code;
 		        let fscore=await getScore(pin);
-		        	that.log("别人的京享值:"+fscore);
+		        	console.log("别人的京享值:"+fscore);
 		        if(fscore<myScore){
 		            await launchBattle(pin);
 	            	await receiveBattle(pin);
@@ -101,18 +101,18 @@ async function main() {
 		}
 		if($.helpAuthor){
 		    	let authScore=await getScore(authorPin);
-		        that.log("小赤佬的京享值:"+authScore);
-		        if(authScore>myScore){//反向操作，嘻嘻嘻
-		            that.log('帮小赤佬挑战一次');
+		        console.log("京享值:"+authScore);
+		        if(authScore>myScore){
+		            console.log('帮挑战一次');
 		            await launchBattle(authorPin);
 	            	await receiveBattle(authorPin);
 		        }else{
-		            that.log('淦，分比小赤佬高，不挑战了');
+		            console.log('淦，不挑战了');
 		        }
 		}
 		
 		await getBoxRewardInfo();
-		that.log("去开宝箱");
+		console.log("去开宝箱");
 		if($.awards){
 		    for(let index=0;index<$.awards.length;index++){
 		        let item=$.awards[index];
@@ -129,7 +129,7 @@ async function main() {
 
 function getPinList(){
     //https://api.r2ray.com/jd.pk/index
-    that.log("获取Pk列表");
+    console.log("获取Pk列表");
 	return new Promise((resolve) => {
 		let options = {
 			"url": `https://api.r2ray.com/jd.pk/index`,
@@ -145,7 +145,7 @@ function getPinList(){
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -154,7 +154,7 @@ function getPinList(){
 }
 
 function launchBattle(fpin) {
-	that.log("发起挑战");
+	console.log("发起挑战");
 	return new Promise((resolve) => {
 		let options = {
 			"url": `https://jd.moxigame.cn/likejxz/launchBattle?actId=8&appId=dafbe42d5bff9d82298e5230eb8c3f79&lkEPin=${$.pin}&recipient=${fpin}&relation=1`,
@@ -174,19 +174,19 @@ function launchBattle(fpin) {
 			try {
 				if (res) {
 					let data = $.toObj(res);
-					that.log(data);
+					console.log(data);
 					if (data) {
 						data=data.data;
 						if(data.msg){
-						    that.log(data.msg);
+						    console.log(data.msg);
 						}else{
-						     that.log($.toStr(data));
+						     console.log($.toStr(data));
 						}
 					}
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -195,7 +195,7 @@ function launchBattle(fpin) {
 }
 
 function getScore(fpin){
-    that.log("查询"+fpin+"分数");
+    console.log("查询"+fpin+"分数");
 	return new Promise((resolve) => {
 		let options = {
         	"url": "https://jd.moxigame.cn/likejxz/getScore?actId=8&appId=dafbe42d5bff9d82298e5230eb8c3f79&lkEPin="+fpin,
@@ -221,7 +221,7 @@ function getScore(fpin){
 					}
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(score);
 			}
@@ -248,22 +248,22 @@ function receiveBattle(fpin) {
 			try {
 				if (res) {
 					let data = $.toObj(res);
-					that.log(data);
+					console.log(data);
 					if (data) {
 						data=data.data;
-							that.log("挑战成功");
+							console.log("挑战成功");
 						if(data.state==1){
 						    if(data.pkResult){
-						        that.log("当前胜场:"+data.pkResult.fromWinNum);
+						        console.log("当前胜场:"+data.pkResult.fromWinNum);
 						    }
 						}else{
-						    that.log($.toStr(data));
+						    console.log($.toStr(data));
 						}
 					}
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -289,18 +289,18 @@ function getBoxRewardInfo() {
 
 		$.get(options, (err, resp, res) => {
 			try {
-				that.log(res);
+				console.log(res);
 				if (res) {
 					let data = $.toObj(res);
 					if (data.success) {
 						$.awards = data.data.awards;
 						$.totalWins=data.data.totalWins;
-						that.log("总胜场:"+data.data.totalWins);
+						console.log("总胜场:"+data.data.totalWins);
 					}
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -327,21 +327,21 @@ function sendBoxReward(rewardConfigId) {
 
 		$.get(options, (err, resp, res) => {
 			try {
-				that.log(res);
+				console.log(res);
 				if (res) {
 					let data = $.toObj(res);
 					if (data.success) {
 						$.openAwards = data.datas;
 						if($.openAwards){
 						    $.openAwards.forEach(item=>{
-						        that.log('获得奖励:'+$.toStr(item));
+						        console.log('获得奖励:'+$.toStr(item));
 						    });
 						}
 					}
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -367,7 +367,7 @@ function getPin() {
 
 		$.post(options, (err, resp, res) => {
 			try {
-				that.log(res);
+				console.log(res);
 				if (res) {
 					let data = $.toObj(res);
 					if (data) {
@@ -376,7 +376,7 @@ function getPin() {
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -409,7 +409,7 @@ function getToken() {
 
 				}
 			} catch (e) {
-				that.log(e);
+				console.log(e);
 			} finally {
 				resolve(res);
 			}
@@ -424,8 +424,8 @@ function safeGet(data) {
 			return true;
 		}
 	} catch (e) {
-		that.log(e);
-		that.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
+		console.log(e);
+		console.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
 		return false;
 	}
 }
@@ -435,7 +435,7 @@ function jsonParse(str) {
 		try {
 			return JSON.parse(str);
 		} catch (e) {
-			that.log(e);
+			console.log(e);
 			$.msg($.name, "", "不要在BoxJS手动复制粘贴修改cookie");
 			return [];
 		}
