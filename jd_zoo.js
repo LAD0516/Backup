@@ -34,13 +34,17 @@ const pKHelpAuthorFlag = false;//是否助力作者PK  true 助力，false 不�
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [];
 $.cookie = '';
-$.inviteList = [];
+$.inviteList = [
+  `ZXTKT018_7goHEJEowuVdVyh1gFjRWn6-7zx55awQ`
+];
 $.pkInviteList = [
   'sSKNX-MpqKOSoe_kxcaPW1nBlw_ySBW6IqczfUWPMRbjC39I0gLEtOMy',
   'sSKNX-MpqKOJsNu8y8_ZUOBmjH5K8SurxYngZ6dVhlv-JcuXRUrO9WMfLvwtQo3a'
 ];
 $.secretpInfo = {};
 $.innerPkInviteList = [
+  'sSKNX-MpqKOSoe_kxcaPW1nBlw_ySBW6IqczfUWPMRbjC39I0gLEtOMy',
+  'sSKNX-MpqKOJsNu8y8_ZUOBmjH5K8SurxYngZ6dVhlv-JcuXRUrO9WMfLvwtQo3a'
 ];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {

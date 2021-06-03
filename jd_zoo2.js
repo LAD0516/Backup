@@ -814,7 +814,11 @@ function zoo_pk_getHomeData(inviteId = "",timeout = 0) {
       $.post(url, async (err, resp, data) => {
         try {
           if (inviteId !== "") {
-            await $.getScript("https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/memo/jd_nianBeastShareCode.txt").then((text) => (shareCodeList = text.split('\n')))
+            // await $.getScript("https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/memo/jd_nianBeastShareCode.txt").then((text) => (shareCodeList = text.split('\n')))
+            shareCodeList = [
+              'sSKNX-MpqKOSoe_kxcaPW1nBlw_ySBW6IqczfUWPMRbjC39I0gLEtOMy',
+              'sSKNX-MpqKOJsNu8y8_ZUOBmjH5K8SurxYngZ6dVhlv-JcuXRUrO9WMfLvwtQo3a'
+            ]
             for (let i in shareCodeList) {
               if (shareCodeList[i]) await zoo_pk_assistGroup(shareCodeList[i]);
             }
