@@ -1,17 +1,7 @@
 /*
-动物联萌 618活动
 更新时间：2021-06-03 09:03
 做任务，收金币
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
-// quantumultx
-[task_local]
-#动物联萌
-5 * * * * https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_zoo.js, tag=动物联萌, img-url=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/jd.png, enabled=true
-// Loon
-[Script]
-cron "5 * * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_zoo.js,tag=动物联萌
-// Surge
-动物联萌 = type=cron,cronexp=5 * * * *,wake-system=1,timeout=500,script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_zoo.js
 */
 const $ = new Env('动物联萌');
 //Node.js用户请在jdCookie.js处填写京东ck;
