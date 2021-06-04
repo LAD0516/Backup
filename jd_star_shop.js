@@ -28,6 +28,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.inviteCodeList = [];
 $.authorCodeList = [
+  'IUUXlcMIgvyrHUrGhZBr9Q', 'JRyydCqW4eizHD9sSa-8OcfEeHZKNpK1gwryU5gwoS4'
 ];
 let cookiesArr = [];
 let uniqueIdList = [

@@ -100,35 +100,35 @@ if(result.result.taskUserEvaluationVOList[0].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[0].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
 if ($.isNode()) {
-  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+  await notify.sendNotify('朗果英语', `\n朗果英语检测到有奖励可领取,前往领取\n`);
 }
 await lgyyhb();
 } else if(result.result.taskUserEvaluationVOList[1].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[1].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
 if ($.isNode()) {
-  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+  await notify.sendNotify('朗果英语', `\n朗果英语检测到有奖励可领取,前往领取\n`);
 }
 await lgyyhb();
 }else if(result.result.taskUserEvaluationVOList[2].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[2].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
 if ($.isNode()) {
-  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+  await notify.sendNotify('朗果英语', `\n朗果英语检测到有奖励可领取,前往领取\n`);
 }
 await lgyyhb();
 }else if(result.result.taskUserEvaluationVOList[3].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[3].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
 if ($.isNode()) {
-  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+  await notify.sendNotify('朗果英语', `\n朗果英语检测到有奖励可领取,前往领取\n`);
 }
 await lgyyhb();
 }else if(result.result.taskUserEvaluationVOList[4].receivedRedId !== undefined){
 tid = result.result.taskUserEvaluationVOList[4].receivedRedId
 $.log('\n朗果英语检测到有奖励可领取,前往领取')
 if ($.isNode()) {
-  await notify.sendNotify(`\n朗果英语检测到有奖励可领取,前往领取\n`);
+  await notify.sendNotify('朗果英语', `\n朗果英语检测到有奖励可领取,前往领取\n`);
 }
 await lgyyhb();
 }
@@ -136,14 +136,14 @@ await lgyyhb();
         console.log(`\n朗果英语用户信息获取成功\n当前积分:${result.result.userScore}\n当前可提现助学金:${result.result.userRedAmout}`)    
 
         if ($.isNode()) {
-          await notify.sendNotify(`\n朗果英语用户信息获取成功\n当前积分:${result.result.userScore}\n当前可提现助学金:${result.result.userRedAmout}\n`);
+          await notify.sendNotify('朗果英语', `\n朗果英语用户信息获取成功\n当前积分:${result.result.userScore}\n当前可提现助学金:${result.result.userRedAmout}\n`);
         }
         
 } else {
 $.log(data)
 console.log('朗果英语获取用户信息失败 已停止当前账号运行!')
 if ($.isNode()) {
-  await notify.sendNotify(`朗果英语获取用户信息失败 已停止当前账号运行!\n`);
+  await notify.sendNotify('朗果英语', `朗果英语获取用户信息失败 已停止当前账号运行!\n`);
 }
 }
         } catch (e) {

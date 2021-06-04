@@ -342,7 +342,7 @@ await $.wait(1000);
  
          console.log('\n西梅用户信息获取成功\n当前梅子:'+result.data.point+'\n当前金币:'+result.data.coin)
          if ($.isNode()) {
-          await notify.sendNotify('\n西梅用户信息获取成功\n当前梅子:'+result.data.point+'\n当前金币:'+result.data.coin);
+          await notify.sendNotify('西梅', '\n西梅用户信息获取成功\n当前梅子:'+result.data.point);
         }
  if(result.data.point >=100){
  $.log('西梅-检测到当前梅子可提现,执行提现任务')
@@ -381,7 +381,7 @@ await $.wait(1000);
          console.log('\n西梅提现成功:'+result.data.order_status)
 
          if ($.isNode()) {
-          await notify.sendNotify('\n西梅提现成功:'+result.data.order_status);
+          await notify.sendNotify('西梅', '\n提现成功:'+result.data.order_status);
         }
          
  } else {

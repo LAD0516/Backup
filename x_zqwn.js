@@ -83,22 +83,22 @@ let url = {
         if(result.code == 1){
 uid=zqwnbody.match(/uid=(.*?)&/)[1]
 tid=zqwnbody.match(/yhtk=(.*?)&/)[1]
-if(result.msg.jifenbl >= 1000){
+if(result.msg.jifenbl >= 5000){
 $.msg('最强蜗牛','','最强蜗牛当前积分已满足提现要求，请去手动提现')
 if ($.isNode()) {
-  await notify.sendNotify(`\n最强蜗牛当前积分已满足提现要求，请去手动提现\n`);
+  await notify.sendNotify('最强蜗牛', `\n最强蜗牛当前积分已满足提现要求，请去手动提现\n`);
 }
 }
         console.log(`\n【最强蜗牛】获取用户信息成功\n当前用户名:${result.msg.usernc}\n当前余额:${result.msg.yuebl}\n当前积分:${result.msg.jifenbl}`)
         if ($.isNode()) {
-          await notify.sendNotify(`\n【最强蜗牛】获取用户信息成功\n当前用户名:${result.msg.usernc}\n当前余额:${result.msg.yuebl}\n当前积分:${result.msg.jifenbl}`);
+          await notify.sendNotify('最强蜗牛', `\n【最强蜗牛】获取用户信息成功\n当前用户名:${result.msg.usernc}\n当前余额:${result.msg.yuebl}\n当前积分:${result.msg.jifenbl}`);
         }
 await zqwn1();
         
 } else {
        console.log('\n【最强蜗牛】获取用户信息失败'+data)
        if ($.isNode()) {
-        await notify.sendNotify(`\n【最强蜗牛】获取用户信息失败\n`);
+        await notify.sendNotify('最强蜗牛', `\n【最强蜗牛】获取用户信息失败\n`);
       }
 }
    
