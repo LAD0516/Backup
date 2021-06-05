@@ -31,7 +31,9 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const randomCount = $.isNode() ? 20 : 5;
 const notify = $.isNode() ? require('./sendNotify') : '';
 let merge = {}
-let codeList = []
+let codeList = [
+    'S_7goHEJEowuVdVyh1g', 'S5KkcRExN9QDVIR6ilvVZcw'
+]
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';
