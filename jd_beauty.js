@@ -288,8 +288,8 @@ async function mr() {
             }
           }
           break
-        case "material_produce":
-          console.log(`【${vo.data.position}】上开始生产${vo.data.material_name}`)
+        case "material_produce_v2":
+          console.log(`【${vo?.data?.position}】上开始生产${vo?.data?.material_name}`)
           client.send(`{"msg":{"type":"action","args":{},"action":"to_employee"}}`)
           $.pos.push(vo.data.position)
           break
