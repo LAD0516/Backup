@@ -13,8 +13,8 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [],
     cookie = '',
     sharecodes = [
-        'P04z54XCjVXmIaW5m9cZ2esjHVDlzxvdLVQQM0', //账号 1
-        'P04z54XCjVXmIaW5m9cZ2esjHVDlzxvdLVQQM0', //账号 2
+        'P04z54XCjVXmIaW5m9cZ2SqiXwel1K0-EeL154', //账号 1
+        'P04z54XCjVXmIaW5nRNUzykgCoV19McPN8', //账号 2
     ];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
