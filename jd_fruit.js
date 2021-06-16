@@ -89,6 +89,11 @@ async function jdFruit() {
       // option['media-url'] = $.farmInfo.farmUserPro.goodsImage;
       message = `【水果名称】${$.farmInfo.farmUserPro.name}\n`;
       console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.farmInfo.farmUserPro.shareCode}\n`);
+      await $.get({
+        url: 'http://107.172.97.176:8080/activeJdFruitCode?code=' + $.farmInfo.farmUserPro.shareCode
+      }, function (err, resp, data) {
+        console.log('互助码状态:' + resp.body);
+      })
       console.log(`\n【已成功兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`);
       message += `【已兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`;
       await masterHelpShare();//助力好友
