@@ -11,6 +11,8 @@ if(JSON[_
 ](0x0) process挨着的 ****首先考虑
 (0x0)
 
+authorCodeList  []
+
 >-0x1  大于-1
 -0x1
 if(JSON[
