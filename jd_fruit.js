@@ -91,7 +91,7 @@ async function jdFruit() {
       console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.farmInfo.farmUserPro.shareCode}\n`);
       // jddj check
       await $.get({
-        url: 'http://107.172.97.176:8080/activeJdFruitCode?code=' + $.farmInfo.farmUserPro.shareCode
+        url: 'http://51.15.187.136:8080/activeJdFruitCode?code=' + $.farmInfo.farmUserPro.shareCode
       }, function (err, resp, data) {
         console.log('互助码状态:' + resp.body);
       })
