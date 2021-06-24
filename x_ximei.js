@@ -133,7 +133,7 @@ uuid = result.data.user_id
       for (let i = 1; i < 21; i++) {
 $.log('\n执行第'+i+'次视频任务,共20次')
         await $.wait(200);
-        await ximeisp();
+        // await ximeisp();
 }
 } else {
        console.log('\n西梅用户id失败  '+result.msg)
@@ -344,10 +344,10 @@ await $.wait(1000);
          if ($.isNode()) {
           await notify.sendNotify('西梅', '\n西梅用户信息获取成功\n当前梅子:'+result.data.point);
         }
- if(result.data.point >=100){
- $.log('西梅-检测到当前梅子可提现,执行提现任务')
- await ximeitx();
- }
+//  if(result.data.point >=100){
+//  $.log('西梅-检测到当前梅子可提现,执行提现任务')
+//  await ximeitx();
+//  }
          
  } else {
         console.log('\n西梅用户信息获取失败  '+result.msg)
