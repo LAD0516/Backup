@@ -1,0 +1,32 @@
+{
+    "id": "jiangcheng.app.sub",
+    "name": "jiangcheng 脚本订阅",
+    "author": "@JIANGCHENG",
+    "icon": "https://cdn.jsdelivr.net/gh/LAD0516/Scripts@eadd70aa1cee4e41c4994a49414bbcd22ed88527/QuanX/images/82EE67B9-D9F4-41CE-BC08-571BE843F4F4.jpeg",
+    "repo": "https://github.com/LAD0516",
+    "apps": [{
+            "id": "zfbwk",
+            "name": "支付宝挖矿",
+            "keys": ["ttwksignheader", "ttwksignbody", "ttwksignheader2", "ttwksignbody2",],
+            "author": "@jiangcheng",
+            "settings": [{
+                    "id": "zfbSuffix",
+                    "name": "当前账号",
+                    "val": "1",
+                    "type": "number",
+                    "desc": "当前抓取ck记录的账号序号，如：1、2、4、"
+                },
+                {
+                    "id": "zfbCount",
+                    "name": "账号个数",
+                    "val": "1",
+                    "type": "number",
+                    "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+                }
+            ],
+            "repo": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js",
+            "icons": ["https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/ttwk.png", "https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/ttwk.png"],
+            "script": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js"
+        }
+     ]
+}
