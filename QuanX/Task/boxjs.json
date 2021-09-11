@@ -1,6 +1,6 @@
 {
 
-	"id": "jiangcheng.app.sub",
+	"id": "zfbwk.app.sub",
 
 	"name": "jiangcheng脚本订阅",
 
@@ -19,9 +19,9 @@
 
 			"ttwksignbody1",
             
-                        "ttwksignheader2"
+                        "ttwksignheader2",
 
-                        "ttwksignbody2"
+                        "ttwksignbody2",
 
 
 		],
