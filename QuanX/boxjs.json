@@ -1,0 +1,70 @@
+{
+
+	"id": "jiangcheng.app.sub",
+
+	"name": "jiangcheng脚本订阅",
+
+	"author": "@jiangcheng",
+	
+	"apps": [{
+
+		"id": "zfbwk",
+
+		"name": "支付宝挖矿",
+
+		"keys": [
+
+			"ttwksignheader1",
+
+			"ttwksignbody1",
+            
+      "ttwksignheader2",
+
+      "ttwksignbody2",
+
+
+		],
+
+		"author": "@jiangcheng",
+
+		"settings": [{
+
+			"id": "zfbwk",
+
+			"name": "当前账号",
+
+			"val": "1",
+
+			"type": "number",
+
+			"desc": "当前抓取ck记录的账号序号，如：1、2、4、"
+
+		}, {
+
+			"id": "CountNumber",
+
+			"name": "账号个数",
+
+			"val": "1",
+
+			"type": "number",
+
+			"desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+
+		}],
+
+		"repo": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js",
+
+		"icons": [
+
+			"https://raw.githubusercontent.com/qxnav.com/rules/QuantumultX/img/Alipay.png",
+
+		    "https://raw.githubusercontent.com/qxnav.com/rules/QuantumultX/img/Alipay.png"
+
+		],
+
+		"script": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js"
+
+	}]	
+
+}
