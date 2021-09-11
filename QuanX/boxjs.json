@@ -5,6 +5,8 @@
 	"name": "jiangcheng脚本订阅",
 
 	"author": "@jiangcheng",
+        
+        "icon": "https://cdn.jsdelivr.net/gh/LAD0516/Scripts@eadd70aa1cee4e41c4994a49414bbcd22ed88527/QuanX/images/82EE67B9-D9F4-41CE-BC08-571BE843F4F4.jpeg",
 	
 	"apps": [{
 
@@ -14,10 +16,14 @@
 
 		"keys": [
 
-			"ttwksignheader1",
+			"ttwksignurl",
 
-			"ttwksignbody1",
+                        "ttwksignheader",
+
+			"ttwksignbody",
             
+                        "ttwksignurl2",
+   
                         "ttwksignheader2",
 
                         "ttwksignbody2"
