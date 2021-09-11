@@ -1,3 +1,4 @@
+/*
 hostname = operation-api.jimistore.com
 #获取挖矿Cookie
 ^https:\/\/operation-api\.jimistore\.com\/* url script-request-body https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js
