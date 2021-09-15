@@ -1,4 +1,4 @@
-name: Annyoo2021-sync
+name: SallyU-sync
 on:
   schedule:
     - cron: '1 * */7 * *'
@@ -6,7 +6,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: sync-Annyoo2021-scripts
+    types: sync-SallyU-fuidvsfjkd
 jobs:
   repo-sync:
     env:
@@ -18,11 +18,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync Annyoo2021-scripts
+      - name: sync SallyU-fuidvsfjkd
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/Annyoo2021/scripts/Cuttlefish.git"
-          source_branch: "main"
-          destination_branch: "Annyoo2021"
+          source_repo: "https://github.com/SallyU/fuidvsfjkd"
+          source_branch: "master"
+          destination_branch: "Task"
           github_token: ${{ secrets.PAT }}
