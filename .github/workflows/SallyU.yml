@@ -22,7 +22,7 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/SallyU/fuidvsfjkd"
+          source_repo: "https://github.com/SallyU/fuidvsfjkd.git"
           source_branch: "master"
           destination_branch: "Task"
           github_token: ${{ secrets.PAT }}
