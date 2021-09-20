@@ -39,7 +39,7 @@ let jiaochenghd = $.getdata('jiaochenghd')
 if (!jiaochenghdArr[0]) {
       $.msg($.name, '【提示】请先获取账号一Cookie');
       return; 
-    
+    }
         timeZone = new Date().getTimezoneOffset() / 60;
         timestamp = Date.now() + (8 + timeZone) * 60 * 60 * 1000;
         bjTime = new Date(timestamp).toLocaleString('zh', {hour12: false, timeZoneName: 'long'});
