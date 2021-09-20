@@ -2,9 +2,7 @@
 
 post模版
 
-post：script-request-body
-
-get：script-request-header
+url script-request-body jiaocheng.js
 
 */
 
