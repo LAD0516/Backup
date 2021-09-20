@@ -45,12 +45,12 @@ if (!jiaochenghdArr[0]) {
       $.msg($.name, '【提示】请先获取账号一Cookie');
       return; 
     }
-        console.log(
-            `\n\n=============================================== 脚本执行 - 北京时间(UTC+8)：${new Date(
-                new Date().getTime() +
-                new Date().getTimezoneOffset() * 60 * 1000 +
-                8 * 60 * 60 * 1000
-            ).toLocaleString()} ===============================================\n`);
+
+        timeZone = new Date().getTimezoneOffset() / 60;
+        timestamp = Date.now() + (8 + timeZone) * 60 * 60 * 1000;
+        bjTime = new Date(timestamp).toLocaleString('zh', {hour12: false, timeZoneName: 'long'});
+        $.log(`\n === 脚本执行${bjTime} === \n`);
+        $.log(`============ 您共提供${jiaochenghdArr.length}个账号 ============`);
 
         for (let i = 0; i < jiaochenghdArr.length; i++) {
 
@@ -64,12 +64,12 @@ if (!jiaochenghdArr[0]) {
                 console.log(`\n\n开始【教程${$.index}】`)
 
 
-                //循环运行
-                for (let c = 0; c < 200; c++) {
-                    $.index = c + 1
+       //循环运行
+       for (let c = 0; c < 10; c++) {
+       $.index = c + 1
 
-                    await jiaocheng()//你要执行的版块  
-                    await $.wait(1000)//你要延迟的时间  1000=1秒
+      await jiaocheng()//你要执行的版块  
+      await $.wait(1000)//你要延迟的时间 1000=1秒
 
                 }
             }
