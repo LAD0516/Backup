@@ -9,10 +9,11 @@
 30 7 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/bgk.js, tag=不挂科, img-url=https://53dh.cn/img/1000, enabled=true
 
 [rewrite_local]
-https://appwk.baidu.com/naapi/stsign url script-request-header bgk.js
+//不挂科
+https://appwk.baidu.com/naapi/stsign url script-request-header https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/bgk.js
 
 [MITM]
-https://appwk.baidu.com/xpage/form/getform
+hostname=appwk.baidu.com
 
 */
 
