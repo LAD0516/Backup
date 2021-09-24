@@ -6,7 +6,7 @@
 
 [task_local]
 //不挂科
-30 7 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/bgk.js, tag=不挂科, img-url=https://53dh.cn/img/1000, enabled=true
+30 7 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/bgk.js, tag=不挂科, img-url= https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/images/bgk.png, enabled=true
 
 [rewrite_local]
 //不挂科
