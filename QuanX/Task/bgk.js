@@ -1,11 +1,11 @@
 /*
   9.23 
-
 软件名称：不挂科 (App Store搜索)
 签到21天领 奇艺视频会员
 获取 CK：打开软件 ⇨ 我的 ⇨ 签到福利  
 
 [task_local]
+//不挂科
 30 7 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/bgk.js, tag=不挂科, img-url=https://53dh.cn/img/1000, enabled=true
 
 [rewrite_local]
@@ -65,12 +65,10 @@ if (!bgkhdArr[0]) {
 
                 $.index = i + 1;
                 console.log(`\n\n开始【不挂科${$.index}】`)
-
-
-
-          await bgk()//你要执行的版块  
-          await $.wait(1000)//你要延迟的时间1000=1秒
-
+                $.log(`随机延时`)
+                    DD = RT(1000, 2000) 
+                    await $.wait(DD)
+                    await bgk()//你要执行的版块  
 
             }
         }
@@ -98,7 +96,12 @@ function bgkck() {
 }
 
 
-
+//随机延时
+function RT(X, Y) {
+    do rt = Math.floor(Math.random() * Y);
+    while (rt < X)
+    return rt;
+}
 
 //签到
 function bgk(timeout = 0) {
@@ -115,9 +118,13 @@ function bgk(timeout = 0) {
                 data = JSON.parse(data)
 
                 if (data.data.signResultstatus == 2) {
-            $.msg($.name,"",'\n'+data.data.signResult.windowInfo.title+data.data.signResult.windowInfo.subTitle)
+
+$.log(data.data.windowInfo.title+data.data.windowInfo.subTitle)
+            $.msg($.name,"",'\n'+data.data.windowInfo.title+data.data.windowInfo.subTitle)
 
                 } else {
+            $.log('签到失败：已签过')
+
             $.msg($.name,"",'签到失败：已签过')
 
                 }
