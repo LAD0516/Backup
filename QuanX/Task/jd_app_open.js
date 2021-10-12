@@ -33,7 +33,7 @@ console.log('================')
 console.log(`${pt_key};${pt_pin};`)
 console.log('================')
 message()
-$.message += `app_open获取成功！\n, ${pt_key};${pt_pin};`
+$.message += `app_open获取成功！\n${pt_key};${pt_pin};`
 
 function Env(t, e) {
   "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
