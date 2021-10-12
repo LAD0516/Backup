@@ -26,10 +26,14 @@ const $ = new Env("app_open")
 let cookie = $request.headers.Cookie
 let pt_key = cookie.match(/(pt_key=[^;]*)/)[1]
 let pt_pin = cookie.match(/(pt_pin=[^;]*)/)[1]
+let tz = ($.getval('tz') || '1');//通知
+$.message = ''
+
 console.log('================')
 console.log(`${pt_key};${pt_pin};`)
 console.log('================')
-$.msg("app_open获取成功！", `${pt_key};${pt_pin};`)
+message()
+$.message += `app_open获取成功！\n, ${pt_key};${pt_pin};`
 
 function Env(t, e) {
   "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
@@ -57,6 +61,13 @@ function Env(t, e) {
       return this.send.call(this.env, t, "POST")
     }
   }
+
+
+//通知
+function message() {
+    if(tz == 1){$.msg($.name,"",$.message)}
+    }
+
 
   return new class {
     constructor(t, e) {
