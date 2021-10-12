@@ -1,23 +1,14 @@
 /*
 
 杀掉后台后打开京东app获取app_open
-在脚本日志查看值
 
 [MITM]
 hostname = draw.jdfcloud.com
 
-===========Surge=================
-[Script]
-jd_appopen = type=http-request,pattern=^https:\/\/api\.m\.jd\.com\/openUpgrade, max-size=0, script-path=jd_appopen.js
-
 ===================Quantumult X=====================
 [rewrite_local]
 # jd_appopen
-^https:\/\/api\.m\.jd\.com\/openUpgrade url script-request-header jd_appopen.js
-
-=====================Loon=====================
-[Script]
-http-request ^https:\/\/api\.m\.jd\.com\/openUpgrade script-path=jd_appopen.js, timeout=3600, tag=jd_appopen
+^https:\/\/api\.m\.jd\.com\/openUpgrade url script-request-header https://github.com/LAD0516/Scripts/raw/main/QuanX/Task/jd_cookie.js
 
 */
 
@@ -26,14 +17,10 @@ const $ = new Env("app_open")
 let cookie = $request.headers.Cookie
 let pt_key = cookie.match(/(pt_key=[^;]*)/)[1]
 let pt_pin = cookie.match(/(pt_pin=[^;]*)/)[1]
-let tz = ($.getval('tz') || '1');//通知
-$.message = ''
-
 console.log('================')
 console.log(`${pt_key};${pt_pin};`)
 console.log('================')
-message()
-$.msg($.name, "", `app_open获取成功！\n${pt_key};${pt_pin}`);
+$.msg($.name, "",`获取成功\n${pt_key};${pt_pin};`)
 
 function Env(t, e) {
   "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
@@ -61,13 +48,6 @@ function Env(t, e) {
       return this.send.call(this.env, t, "POST")
     }
   }
-
-
-//通知
-function message() {
-    if(tz == 1){$.msg($.name,"",$.message)}
-    }
-
 
   return new class {
     constructor(t, e) {
@@ -315,3 +295,4 @@ function message() {
     }
   }(t, e)
 }
+
