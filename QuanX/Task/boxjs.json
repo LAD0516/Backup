@@ -1,41 +1,47 @@
 {
 
-	"id": "jiangcheng.app.sub",
+	"id": "GnA1J.app.sub",
 
-	"name": "jiangcheng脚本订阅",
+	"name": "GnA1J脚本订阅",
 
-	"author": "@jiangcheng",
+	"author": "@GnA1J",
         
-        "icon": "https://cdn.jsdelivr.net/gh/LAD0516/Scripts@eadd70aa1cee4e41c4994a49414bbcd22ed88527/QuanX/images/82EE67B9-D9F4-41CE-BC08-571BE843F4F4.jpeg",
+        "icon": "https://cdn.jsdelivr.net/gh/LAD0516/Scripts@eadd70aa1cee4e41c4994a49414bbcd22ed88527/QuanX/images/JC.png",
 	
 	"apps": [{
 
-		"id": "zfbwk",
+		"id": "dww",
 
-		"name": "支付宝挖矿",
+		"name": "电玩屋签到",
 
 		"keys": [
 
-			"ttwksignurl",
+		"dwwurl",
 
-                        "ttwksignheader",
+                "dwwheader",
 
-			"ttwksignbody",
+         	"dwwbody",
             
-                        "ttwksignurl2",
-   
-                        "ttwksignheader2",
+		"dwwurl2",
 
-                        "ttwksignbody2"
+                "dwwheader2",
+
+                "dwwbody2",
+			
+                "dwwurl3",
+   
+                "dwwheader3",
+
+                "dwwbody3"
 
 
 		],
 
-		"author": "@jiangcheng",
+		"author": "@GnA1J",
 
 		"settings": [{
 
-			"id": "zfbwk",
+			"id": "dww",
 
 			"name": "当前账号",
 
@@ -43,7 +49,7 @@
 
 			"type": "number",
 
-			"desc": "当前抓取ck记录的账号序号，如：1、2、4、"
+			"desc": "当前抓取ck记录的账号序号，如：1、2、3、"
 
 		}, {
 
@@ -59,17 +65,17 @@
 
 		}],
 
-		"repo": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js",
+		"repo": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/dww.js",
 
 		"icons": [
 
-			"https://raw.githubusercontent.com/qxnav.com/rules/QuantumultX/img/Alipay.png",
+			"https://z3.ax1x.com/2021/11/22/IxGcct.png",
 
-		    "https://raw.githubusercontent.com/qxnav.com/rules/QuantumultX/img/Alipay.png"
+		    "https://z3.ax1x.com/2021/11/22/IxGcct.png"
 
 		],
 
-		"script": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/zfbwg.js"
+		"script": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/dww.js"
 
 	}]	
 
