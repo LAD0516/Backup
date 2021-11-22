@@ -6,7 +6,7 @@
 
 	"author": "@GnA1J",
         
-        "icon": "https://cdn.jsdelivr.net/gh/LAD0516/Scripts@eadd70aa1cee4e41c4994a49414bbcd22ed88527/QuanX/images/JC.png",
+        "icon": "https://github.com/LAD0516/Scripts/raw/main/QuanX/images/JC.png",
 	
 	"apps": [{
 
@@ -16,24 +16,11 @@
 
 		"keys": [
 
-		"dwwurl",
+                "dwwhd",
 
-                "dwwheader",
+                "dwwhd2",
 
-         	"dwwbody",
-            
-		"dwwurl2",
-
-                "dwwheader2",
-
-                "dwwbody2",
-			
-                "dwwurl3",
-   
-                "dwwheader3",
-
-                "dwwbody3"
-
+                "dwwhd3",
 
 		],
 
