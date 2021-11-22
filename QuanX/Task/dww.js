@@ -4,7 +4,7 @@
 [task_local]
 
 #电玩屋签到
-16 8 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/dww.js, tag=得间小说, enabled=true
+16 8 * * * dww.js, tag=电玩屋签到, img-url=https://z3.ax1x.com/2021/11/22/IxGcct.png, enabled=true
 [rewrite_local]
 
 #电玩屋签到
@@ -86,12 +86,12 @@ if (!dwwhdArr[0]) {
 
 //获取ck
 function dwwck() {
-    if ($request.url.indexOf("admin-ajax.php") > -1) {
+    if ($request.url.indexOf("php") > -1) {
         const dwwurl = $request.url
         if (dwwurl) $.setdata(dwwurl, `dwwurl${status}`)
         $.log(dwwurl)
 
-        const dwwhd = JSON.stringify($request.headers)
+        const dwwhd = JSON.stringify($request.headers.Cookie)
         if (dwwhd) $.setdata(dwwhd, `dwwhd${status}`)
         $.log(dwwhd)
 
@@ -113,7 +113,19 @@ function dww(timeout = 0) {
 
         let url = {
             url: `https://dw.kxlme.com/wp-admin/admin-ajax.php`,
-            headers: JSON.parse(dwwhd),
+            headers: {
+'X-Requested-With' : `XMLHttpRequest`,
+'Connection' : `keep-alive`,
+'Accept-Encoding' : `gzip, deflate, br`,
+'Content-Type' : `application/x-www-form-urlencoded; charset=UTF-8`,
+'Origin' : `https://dw.kxlme.com`,
+'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1`,
+'Cookie' : `${JSON.parse(dwwhd)}`,
+'Host' : `dw.kxlme.com`,
+'Referer' : `https://dw.kxlme.com/`,
+'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
+'Accept' : `*/*`
+},
             body: dwwbody,
         }
         $.post(url, async (err, resp, data) => {
