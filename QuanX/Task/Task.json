@@ -1,6 +1,6 @@
 {
   "name":"GnA1J-Task",
-  "description":"重写添加相对的附加组件即可"
+  "description":"重写添加相对的附加组件即可",
   "task":[
     {
       "config":"16 8 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/dww.js, tag=电玩屋签到, img-url=https://z3.ax1x.com/2021/11/22/IxGcct.png, enabled=true",
@@ -9,7 +9,7 @@
     {
       "config":"20 8 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/yxk.js, tag=游戏库签到, enabled=true",
       "addons":"https://sourl.cn/WEqE8r,tag=游戏库_获取Cookiee"
-    },
+    }
     
   ],
 
