@@ -2,7 +2,8 @@
 
 [task_local]
 
-#游戏库签20 8 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/yxk.js, tag=游戏库签到, enabled=true
+#游戏库签到
+20 8 * * * https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/yxk.js, tag=游戏库签到, enabled=true
 [rewrite_local]
 
 #游戏库签到
