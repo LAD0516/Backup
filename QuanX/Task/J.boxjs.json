@@ -72,21 +72,66 @@
 		"script": "https://raw.githubusercontent.com/LAD0516/Scripts/main/QuanX/Task/dww.js"
 
 	},
-    {
-      "author": "@GnA1J", 
-      "keys": [
-        "youth_start", 
-        "youth_look"
-      ], 
-      "repo": "https://github.com/LAD0516/Scripts/raw/main/QuanX/Task/Youth_banner.js", 
-      "id": "youthGain", 
-      "script": "https://github.com/LAD0516/Scripts/raw/main/QuanX/Task/Youth_banner.js", 
-      "name": "中青浏览赚&看看赚", 
-      "icons": [
-        "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Alpha/youth.png", 
-        "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/youth.png"
-      ]
-    }
+   {
+
+		"id": "zqllz",
+
+		"name": "中青浏览赚",
+
+		"keys": [
+
+        "youth_start",
+
+         "youth_look",
+
+			"youth_start2",
+			
+                "youth_look2"
+ 
+
+		],
+
+		"author": "@GnA1J",
+
+		"settings": [{
+
+			"id": "zqllz",
+
+			"name": "当前账号",
+
+			"val": "1",
+
+			"type": "number",
+
+			"desc": "当前抓取ck记录的账号序号，如：1、2、3、"
+
+		}, {
+
+			"id": "CountNumber",
+
+			"name": "账号个数",
+
+			"val": "1",
+
+			"type": "number",
+
+			"desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+
+		}],
+
+		"repo": "https://github.com/LAD0516/Scripts/raw/main/QuanX/Task/Youth_banner.js",
+
+		"icons": [
+
+			"https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Alpha/youth.png",
+
+		    "https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Alpha/youth.png"
+
+		],
+
+		"script": "https://github.com/LAD0516/Scripts/raw/main/QuanX/Task/Youth_banner.js"
+
+	}
 	
 ]	
 
