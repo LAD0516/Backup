@@ -1,7 +1,7 @@
 name: chavyleung-sync
 on:
   schedule:
-    - cron: '1 * * */1 *'
+    - cron: '1 * */7 * *'
   workflow_dispatch:
   watch:
     types: started
@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync chavyleung-scripts
+      - name: sync SallyU-fuidvsfjkd
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
