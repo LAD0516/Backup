@@ -4,7 +4,7 @@ on:
 jobs:
   repo-sync:
     env:
-      PAT: ${{ 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 }} #此处PAT需要申请，教程详见：https://www.jianshu.com/p/bb82b3ad1d11,需要repo和workflow权限
+      PAT: ${{ secrets.PAT }} #此处PAT需要申请，教程详见：https://www.jianshu.com/p/bb82b3ad1d11,需要repo和workflow权限
     runs-on: ubuntu-latest
     timeout-minutes: 3
     if: github.event.repository.owner.id == github.event.sender.id
@@ -19,4 +19,4 @@ jobs:
           source_repo: "https://github.com/zero205/JD_tencent_scf.git"
           source_branch: "scf2"
           destination_branch: "main"
-          github_token: ${{ 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 }}
+          github_token: ${{ secrets.PAT }}
